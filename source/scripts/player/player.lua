@@ -253,7 +253,6 @@ function Player:die()
 end
 
 function Player:changeToIdleState()
-    self.xVelocity = 0
     self.flutter:refillFlutterFuel()
     self:changeState("idle")
 end
