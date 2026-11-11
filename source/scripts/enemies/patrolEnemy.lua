@@ -10,6 +10,14 @@ local SIZE <const> = 16
 PatrolEnemy.DEBUG = false
 local debugProbes = {}
 
+function PatrolEnemy:init(x, y, entity, sheetPath)
+    PatrolEnemy.super.init(self, x, y, entity, sheetPath)
+    -- the LDtk maxDistance field is in tiles; distanceTraveled is tracked in pixels
+    if self.maxDistance then
+        self.maxDistance *= SIZE
+    end
+end
+
 function PatrolEnemy:update()
     self:checkLedge()
 
