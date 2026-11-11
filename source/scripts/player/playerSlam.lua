@@ -46,6 +46,8 @@ end
 
 -- Runs after handleState so it overrides any input/drag/gravity velocity changes.
 function PlayerSlam:updateSlam(player, flutter)
+    self:updateBreakableHint()
+
     if not self.slamPhase then
         -- self.fluttering still holds last frame's value here (updateFlutterState runs later)
         if flutter.fluttering then
@@ -102,6 +104,12 @@ local function isGround(sprite)
 end
 
 function PlayerSlam:distanceToGround()
+    return (self:probeGround())
+end
+
+-- Returns the distance to the nearest ground below the feet and the breakable blocks
+-- that are the first ground hit under either foot.
+function PlayerSlam:probeGround()
     local player = self.player
     -- getCollideBounds is relative to the sprite, so convert to world coordinates
     local rx, ry, bw, bh = player:getCollideBounds()
@@ -109,6 +117,7 @@ function PlayerSlam:distanceToGround()
     local bx, by = spriteX + rx, spriteY + ry
     local bottom = by + bh
     local best = math.huge
+    local breakables = {}
 
     -- probe both feet so a ledge under one edge still counts
     for _, x in ipairs({ bx + 1, bx + bw - 1 }) do
@@ -116,9 +125,60 @@ function PlayerSlam:distanceToGround()
         for _, info in ipairs(hits) do
             if info.sprite ~= player and isGround(info.sprite) then
                 best = math.min(best, math.max(0, info.entryPoint.y - bottom))
+                if info.sprite:getTag() == TAGS.Breakable then
+                    breakables[#breakables + 1] = info.sprite
+                end
                 break -- results are sorted by distance, first ground hit is enough
             end
         end
     end
-    return best
+    return best, breakables
+end
+
+-- Flashes the breakable blocks below (and everything connected to them) while the player
+-- is high enough for a power slam to break them.
+function PlayerSlam:updateBreakableHint()
+    local player = self.player
+    local targets = nil
+
+    local airborne = (not player.grounded) and (not player.touchingGround)
+    if airborne and self.slamPhase ~= "drop" then
+        local distance, breakables = self:probeGround()
+        if distance >= SLAM_MIN_DISTANCE and #breakables > 0 then
+            targets = self:getHintTargets(breakables)
+        end
+    end
+
+    if self.hintTargets and self.hintTargets ~= targets then
+        for block in pairs(self.hintTargets) do
+            block:setFlashing(false)
+        end
+    end
+    self.hintTargets = targets
+    if targets then
+        for block in pairs(targets) do
+            block:setFlashing(true)
+        end
+    end
+end
+
+-- Rebuilds the connected set only when the blocks under the feet change.
+function PlayerSlam:getHintTargets(breakables)
+    local cache = self.hintCache
+    local same = cache and #cache.sources == #breakables
+    if same then
+        for i, block in ipairs(breakables) do
+            if cache.sources[i] ~= block then same = false break end
+        end
+    end
+    if same then return cache.targets end
+
+    local targets = {}
+    for _, block in ipairs(breakables) do
+        for connected in pairs(block:getConnectedBlocks()) do
+            targets[connected] = true
+        end
+    end
+    self.hintCache = { sources = breakables, targets = targets }
+    return targets
 end
