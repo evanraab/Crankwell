@@ -23,7 +23,7 @@ local FADE_HOLD <const> = 3     -- frames held fully black
 local PEEK <const> = 16
 
 local function verticalOffset(levelName)
-    local peek = ldtk.get_custom_data(levelName, "cameraPeek")
+    local peek = ldtk.get_custom_data(levelName, "CameraPeek")
     if peek == "Down" then return PEEK end
     if peek == "Up" then return -PEEK end
     return 0
