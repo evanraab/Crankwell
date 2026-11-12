@@ -60,21 +60,21 @@ function Player:init(x, y, gameManager)
     self.inventory = Inventory()
 
     -- state machine
-    local playerImageTable = gfx.imagetable.new("images/player-table-32-32")
+    local playerImageTable = gfx.imagetable.new("images/pika/player-table-24-24")
     Player.super.init(self, playerImageTable)
 
-    self:addState("idle", 4, 7, {tickStep = 4})
-    self:addState("run", 8, 13, {tickStep = 4})
-    self:addState("jump", 14, 14, {tickStep = 1})
-    self:addState("fall", 15, 15, {tickStep = 1})
-    self:addState("flutter", 14, 15, {tickStep = 4})
+    self:addState("idle", 1)
+    self:addState("run", 1)
+    self:addState("jump", 1)
+    self:addState("fall", 1)
+    self:addState("flutter", 1)
     self:playAnimation()
 
     -- sprite stuff
     self:moveTo(x, y)
     self:setZIndex(Z_INDEXES.Player)
     self:setTag(TAGS.Player)
-    self:setCollideRect(5, 5, 12, 20)
+    self:setCollideRect(5, 5, 16, 17)
     self.collision = PlayerCollision(self)
     self.flutter = PlayerFlutter(self)
     self.slam = PlayerSlam(self, self.flutter)
