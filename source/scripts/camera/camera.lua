@@ -1,8 +1,8 @@
 local gfx <const> = playdate.graphics
 local ldtk <const> = LDtk
 
-local SCREEN_WIDTH <const> = 400
-local SCREEN_HEIGHT <const> = 240
+local SCREEN_WIDTH <const> = playdate.display.getWidth()
+local SCREEN_HEIGHT <const> = playdate.display.getHeight()
 
 local GRAVITY <const> = 0.8
 local TRANSITION_FRAMES <const> = 24
