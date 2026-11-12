@@ -60,7 +60,7 @@ function Player:init(x, y, gameManager)
     self.inventory = Inventory()
 
     -- state machine
-    local playerImageTable = gfx.imagetable.new("images/pika/player-table-24-24")
+    local playerImageTable = gfx.imagetable.new("images/pika/player-table-16-16")
     Player.super.init(self, playerImageTable)
 
     self:addState("idle", 1)
@@ -74,7 +74,7 @@ function Player:init(x, y, gameManager)
     self:moveTo(x, y)
     self:setZIndex(Z_INDEXES.Player)
     self:setTag(TAGS.Player)
-    self:setCollideRect(5, 5, 16, 17)
+    self:setCollideRect(1, 1, 16, 16)
     self.collision = PlayerCollision(self)
     self.flutter = PlayerFlutter(self)
     self.slam = PlayerSlam(self, self.flutter)
