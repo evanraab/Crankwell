@@ -7,20 +7,17 @@ local SCREEN_HEIGHT <const> = 240
 local GRAVITY <const> = 0.8
 local TRANSITION_FRAMES <const> = 24
 local COMMIT_DEPTH <const> = 29   -- how far past the edge the apex must reach
-local CAMERA_Y_OFFSET <const> = 16   -- lowers the view by one tile to show the top of the room below
+local CAMERA_Y_OFFSET <const> = LevelConfig.TILE_SIZE   -- lowers the view by one tile to show the top of the room below
 
 local function smoothstep(t)
     return t * t * (3 - 2 * t)
 end
-local PEEK <const> = 16
-
-
 local FADE_FRAMES <const> = 8   -- frames to fade out (and again to fade in)
 local FADE_HOLD <const> = 3     -- frames held fully black
 
 -- Shift the view toward a vertical neighbour: down if there is a room below,
 -- otherwise up if there is a room above. Rooms with both prefer the one below.
-local PEEK <const> = 16
+local PEEK <const> = LevelConfig.TILE_SIZE
 
 local function verticalOffset(levelName)
     local peek = ldtk.get_custom_data(levelName, "CameraPeek")

@@ -4,6 +4,7 @@ import "CoreLibs/timer"
 import "CoreLibs/sprites"
 import "CoreLibs/animation"
 
+import "scripts/levelConfig"
 import "scripts/libraries/LDtk"
 import "scripts/libraries/AnimatedSprite"
 import "scripts/player/playerCollision"

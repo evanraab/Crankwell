@@ -4,7 +4,9 @@ local Camera = import "scripts/camera/camera"
 local gfx <const> = playdate.graphics
 local ldtk <const> = LDtk
 
-local TILE_SIZE = 16
+local TILE_SIZE <const> = LevelConfig.TILE_SIZE
+local SPAWN_COL <const> = LevelConfig.SPAWN_COL
+local SPAWN_ROW <const> = LevelConfig.SPAWN_ROW
 
 TAGS = {
     Player = 1,
@@ -32,14 +34,11 @@ local ENEMY_ENTITIES <const> = {
 
 local usePrecomputedLevels = not playdate.isSimulator
 
-ldtk.load("levels/world.ldtk", usePrecomputedLevels)
+ldtk.load(LevelConfig.LEVEL_FILE, usePrecomputedLevels)
 
 if playdate.isSimulator then
     ldtk.export_to_lua_files()
 end
-
-
-ldtk.load("Levels/World.ldtk", false)
 
 -- Wrappers look up the class globals at call time, so load order doesn't matter
 local entitySpawners <const> = {
@@ -88,8 +87,8 @@ function GameScene:init()
     self:setActiveLevel(self.spawnLevel, true)
     self.camera = Camera.new(self)
 
-    self.spawnX = spawnRect.x + 2 * TILE_SIZE
-    self.spawnY = spawnRect.y + 10 * TILE_SIZE
+    self.spawnX = spawnRect.x + SPAWN_COL * TILE_SIZE
+    self.spawnY = spawnRect.y + SPAWN_ROW * TILE_SIZE
     self.player = Player(self.spawnX, self.spawnY, self)
 end
 
@@ -256,7 +255,7 @@ function GameScene:getRespawnPoint()
         return start.x, start.y
     end
     local rect = self.levelRect
-    return rect.x + 2 * TILE_SIZE, rect.y + 10 * TILE_SIZE
+    return rect.x + SPAWN_COL * TILE_SIZE, rect.y + SPAWN_ROW * TILE_SIZE
 end
 
 function GameScene:resetPlayer()
