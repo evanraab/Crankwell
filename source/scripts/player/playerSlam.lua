@@ -5,11 +5,11 @@ local SLAM_CRANK_THRESHOLD_WHILE_IN_OTHER_STATE = 20;
 -- sustained and keep the stricter threshold for a short while after fluttering stops.
 local SLAM_REVERSE_FRAMES = 2
 local SLAM_FLUTTER_GRACE_FRAMES = 10
-local SLAM_SPEED = 16
+local SLAM_SPEED = 16 * LevelConfig.MOVE_SCALE
 
 local TILE_SIZE = LevelConfig.TILE_SIZE
 local SLAM_MIN_DISTANCE = 3 * TILE_SIZE
-local SLAM_PROBE_LENGTH = 240
+local SLAM_PROBE_LENGTH = playdate.display.getHeight()
 
 local SLAM_FREEZE_FRAMES = 16  -- a bit longer so the flip reads; tune by feel
 

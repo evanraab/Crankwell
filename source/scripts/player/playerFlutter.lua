@@ -5,9 +5,9 @@ FLUTTER_FUEL_MAX = 40
 local FLUTTER_FUEL_REGEN_ON_LAND = true
 local FLUTTER_APEX_HOLD_FRAMES = 3
 local FLUTTER_LIFT_PIXELS = 2 * LevelConfig.TILE_SIZE
-local FLUTTER_LIFT_SPEED = -1.0
+local FLUTTER_LIFT_SPEED = -1.0 * LevelConfig.MOVE_SCALE
 local FLUTTER_DROP_PIXELS = LevelConfig.TILE_SIZE
-local FLUTTER_DROP_SPEED = 2.4
+local FLUTTER_DROP_SPEED = 2.4 * LevelConfig.MOVE_SCALE
 -- airborne frames after a flutter ends (finished or released) before another full flutter can start
 local FLUTTER_COOLDOWN_FRAMES = 20
 

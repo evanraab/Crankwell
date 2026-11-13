@@ -1,8 +1,9 @@
 local gfx <const> = playdate.graphics
 
+local SCALE <const> = LevelConfig.MOVE_SCALE
 local BOUNCE_VELOCITY <const> = -6
 local STOMP_GRACE_FRAMES <const> = 6
-local LANDING_GRACE_PIXELS <const> = 6
+local LANDING_GRACE_PIXELS <const> = 6 * SCALE
 
 -- default bounce values
 local DEFAULT_BOUNCE <const> = {
@@ -150,9 +151,9 @@ function PlayerCollision:bouncePlayer(profile)
     profile = profile or DEFAULT_BOUNCE
 
     local velocity = profile.velocity or DEFAULT_BOUNCE.velocity
-    self.player.yVelocity = velocity
+    self.player.yVelocity = velocity * SCALE
     -- horizontal movement if necessary
-    self.player.xVelocity += (profile.xPush or 0)
+    self.player.xVelocity += (profile.xPush or 0) * SCALE
     self.stompGrace = profile.graceFrames or DEFAULT_BOUNCE.graceFrames
 
     if profile.onBounce then

@@ -1,16 +1,18 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-local MAX_RUN_SPEED = 3
-local RUN_ACCEL = 0.25   -- per frame; ~17 frames to reach MAX_RUN_SPEED from standstill
-local RUN_DECEL = 0.4    -- per frame; used when no input or reversing
-local RUN_REDUCE = 0.32   -- decel when above max speed with input in the same direction
+local SCALE <const> = LevelConfig.MOVE_SCALE
+
+local MAX_RUN_SPEED = 3 * SCALE
+local RUN_ACCEL = 0.25 * SCALE   -- per frame; ~17 frames to reach MAX_RUN_SPEED from standstill
+local RUN_DECEL = 0.4 * SCALE    -- per frame; used when no input or reversing
+local RUN_REDUCE = 0.32 * SCALE   -- decel when above max speed with input in the same direction
 local AIR_MULT = 0.65
 
-local FLUTTER_ACCEL = 0.15
-local FLUTTER_DRAG = 0.4
-local FLUTTER_MAX_SPEED = 1.5
-local FLUTTER_TURN_BRAKE = 0.5
+local FLUTTER_ACCEL = 0.15 * SCALE
+local FLUTTER_DRAG = 0.4 * SCALE
+local FLUTTER_MAX_SPEED = 1.5 * SCALE
+local FLUTTER_TURN_BRAKE = 0.5 * SCALE
 
 --- @class PlayerMovement
 PlayerMovement = {}

@@ -17,6 +17,9 @@ local variant <const> = VARIANTS[ACTIVE]
 
 LevelConfig = {
     TILE_SIZE = ACTIVE,
+    -- Player physics were tuned in px/frame for 16px tiles. Multiply every speed, acceleration
+    -- and gravity by this so jump height (in tiles) and timing stay the same on other grids.
+    MOVE_SCALE = ACTIVE / 16,
     LEVEL_FILE = variant.file,
     SPAWN_COL = variant.spawnCol,
     SPAWN_ROW = variant.spawnRow,

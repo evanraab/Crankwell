@@ -4,9 +4,9 @@ local ldtk <const> = LDtk
 local SCREEN_WIDTH <const> = playdate.display.getWidth()
 local SCREEN_HEIGHT <const> = playdate.display.getHeight()
 
-local GRAVITY <const> = 0.8
+local GRAVITY <const> = 0.8 * LevelConfig.MOVE_SCALE
 local TRANSITION_FRAMES <const> = 24
-local COMMIT_DEPTH <const> = 29   -- how far past the edge the apex must reach
+local COMMIT_DEPTH <const> = 29 * LevelConfig.MOVE_SCALE   -- how far past the edge the apex must reach
 local CAMERA_Y_OFFSET <const> = LevelConfig.TILE_SIZE   -- lowers the view by one tile to show the top of the room below
 
 local function smoothstep(t)

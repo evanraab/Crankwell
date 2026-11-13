@@ -11,11 +11,12 @@ class('Player').extends(AnimatedSprite)
 local CRANK_SPEED_THRESHOLD = 3
 
 -- Fall properties
-local MAX_FALL_SPEED = 12
-local RISE_GRAVITY = 0.5
-local FALL_GRAVITY = .9
-local JUMP_VELOCITY = -7.1
-local JUMP_CUT_VELOCITY = -2.5 -- max upward speed once the jump button is released
+local SCALE <const> = LevelConfig.MOVE_SCALE
+local MAX_FALL_SPEED = 12 * SCALE
+local RISE_GRAVITY = 0.5 * SCALE
+local FALL_GRAVITY = .9 * SCALE
+local JUMP_VELOCITY = -7.1 * SCALE
+local JUMP_CUT_VELOCITY = -2.5 * SCALE -- max upward speed once the jump button is released
 
 -- Coyote properties
 local COYOTE_FRAMES = 6
@@ -306,7 +307,6 @@ function Player:onLanding(wasGrounded)
         self.slam.powered = false
         self.slam.slamPhase = nil
         self.flutter:handleLanding(wasGrounded)
-        self.apexGliding = false
-        self.apexGliderTimer = 0
+        self.apexGlide:resetApexGlide()
     end
 end
