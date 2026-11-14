@@ -64,11 +64,11 @@ function Player:init(x, y, gameManager)
     local playerImageTable = gfx.imagetable.new("images/pika/player-table-16-16")
     Player.super.init(self, playerImageTable)
 
-    self:addState("idle", 1)
-    self:addState("run", 1)
-    self:addState("jump", 1)
-    self:addState("fall", 1)
-    self:addState("flutter", 1)
+    self:addState("idle", 1, 1)
+    self:addState("run", 2, 4, {tickStep = 4})
+    self:addState("jump", 1, 1)
+    self:addState("fall", 1, 1)
+    self:addState("flutter", 1, 1)
     self:playAnimation()
 
     -- sprite stuff
