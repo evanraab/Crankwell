@@ -9,6 +9,7 @@ local MAX_RUN_SPEED = math.floor(3 * SCALE + 0.5)
 local RUN_ACCEL = 0.25 * SCALE   -- per frame; ~17 frames to reach MAX_RUN_SPEED from standstill
 local RUN_DECEL = 0.4 * SCALE    -- per frame; used when no input or reversing
 local RUN_REDUCE = 0.32 * SCALE   -- decel when above max speed with input in the same direction
+local GROUND_STOP_DECEL = 0.8 * SCALE   -- per frame; grounded with no direction held (~4 frames from full speed)
 local AIR_MULT = .9
 
 local FLUTTER_ACCEL = 0.15 * SCALE
@@ -104,7 +105,11 @@ function PlayerMovement:handleGroundInput(player)
         player.globalFlip = (dir < 0) and 1 or 0
     end
 
-    self:applyHorizontal(player, dir, 1)
+    if dir == 0 then
+        player.xVelocity = approach(player.xVelocity, 0, GROUND_STOP_DECEL)
+    else
+        self:applyHorizontal(player, dir, 1)
+    end
 
     if pd.buttonJustPressed(pd.kButtonUp) then
         player:changeToJumpState()
