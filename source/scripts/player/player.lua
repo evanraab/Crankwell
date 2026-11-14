@@ -12,7 +12,7 @@ local CRANK_SPEED_THRESHOLD = 3
 
 -- Fall properties
 local SCALE <const> = LevelConfig.MOVE_SCALE
-local MAX_FALL_SPEED = 12 * SCALE
+local MAX_FALL_SPEED = 9 * SCALE
 local RISE_GRAVITY = 0.5 * SCALE
 local FALL_GRAVITY = .9 * SCALE
 local JUMP_VELOCITY = -7.1 * SCALE

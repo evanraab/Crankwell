@@ -3,7 +3,9 @@ local gfx <const> = playdate.graphics
 
 local SCALE <const> = LevelConfig.MOVE_SCALE
 
-local MAX_RUN_SPEED = 3 * SCALE
+-- Whole-pixel cruise speed: a fractional speed (e.g. 1.875) moves the sprite 1px then 2px on
+-- alternating frames, which reads as judder, especially when pixel-doubled.
+local MAX_RUN_SPEED = math.floor(3 * SCALE + 0.5)
 local RUN_ACCEL = 0.25 * SCALE   -- per frame; ~17 frames to reach MAX_RUN_SPEED from standstill
 local RUN_DECEL = 0.4 * SCALE    -- per frame; used when no input or reversing
 local RUN_REDUCE = 0.32 * SCALE   -- decel when above max speed with input in the same direction
