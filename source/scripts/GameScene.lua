@@ -88,8 +88,17 @@ function GameScene:init()
     self:setActiveLevel(self.spawnLevel, true)
     self.camera = Camera.new(self)
 
-    self.spawnX = spawnRect.x + 2 * TILE_SIZE
-    self.spawnY = spawnRect.y + 10 * TILE_SIZE
+    -- Prefer the level's PlayerStart entity (populated by setActiveLevel above) so the
+    -- initial spawn always lands on ground the level actually has, regardless of its
+    -- tile grid size. Fall back to the old fixed offset for levels without one.
+    local start = self.levelStarts[self.spawnLevel]
+    if start then
+        self.spawnX = start.x
+        self.spawnY = start.y
+    else
+        self.spawnX = spawnRect.x + 2 * TILE_SIZE
+        self.spawnY = spawnRect.y + 10 * TILE_SIZE
+    end
     self.player = Player(self.spawnX, self.spawnY, self)
 end
 

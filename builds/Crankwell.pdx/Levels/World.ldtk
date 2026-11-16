@@ -15083,7 +15083,24 @@
 					"seed": 5239886,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "PlayerStart",
+							"__grid": [3,12],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FEE761",
+							"iid": "e6d50688-1c5f-4b9d-b967-9cc730798e1b",
+							"width": 16,
+							"height": 16,
+							"defUid": 130,
+							"px": [48,192],
+							"fieldInstances": [],
+							"__worldX": 4224,
+							"__worldY": 960
+						}
+					]
 				},
 				{
 					"__identifier": "Walls",
