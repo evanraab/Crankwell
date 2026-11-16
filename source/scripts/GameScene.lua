@@ -4,7 +4,7 @@ local Camera = import "scripts/camera/camera"
 local gfx <const> = playdate.graphics
 local ldtk <const> = LDtk
 
-local TILE_SIZE = 16
+local TILE_SIZE = 20
 
 TAGS = {
     Player = 1,
