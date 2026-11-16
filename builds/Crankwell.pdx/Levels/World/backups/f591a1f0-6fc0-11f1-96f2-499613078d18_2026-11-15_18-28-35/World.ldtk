@@ -2426,7 +2426,7 @@
 			"tileGridSize": 20,
 			"spacing": 0,
 			"padding": 0,
-			"tags": [],
+			"tags": ["Solid"],
 			"tagsSourceEnumUid": null,
 			"enumTags": [],
 			"customData": [],
