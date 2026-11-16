@@ -14,7 +14,7 @@ local CRANK_SPEED_THRESHOLD = 3
 local MAX_FALL_SPEED = 12
 local RISE_GRAVITY = 0.5
 local FALL_GRAVITY = .9
-local JUMP_VELOCITY = -7.1
+local JUMP_VELOCITY = -7.9 -- ~66px apex with RISE_GRAVITY: clears 3 tiles of 20px (60px) but not 4
 local JUMP_CUT_VELOCITY = -2.5 -- max upward speed once the jump button is released
 
 -- Coyote properties

@@ -1,12 +1,13 @@
 -- Flutter properties
--- one full flutter (drop + lift) costs ~39 fuel and fuel is refilled each time a flutter starts;
+-- one full flutter (drop + lift) costs ~37 fuel and fuel is refilled each time a flutter starts;
 -- global so the HUD in main.lua shares it
 FLUTTER_FUEL_MAX = 40
 local FLUTTER_FUEL_REGEN_ON_LAND = true
 local FLUTTER_APEX_HOLD_FRAMES = 3
 local FLUTTER_LIFT_PIXELS = 32
 local FLUTTER_LIFT_SPEED = -1.0
-local FLUTTER_DROP_PIXELS = 16
+-- net gain over the jump apex is ~20px (lift 32 - ~12 dropped), so a flutter peaks at ~86px: clears 4 tiles of 20px, not 5
+local FLUTTER_DROP_PIXELS = 10
 local FLUTTER_DROP_SPEED = 2.4
 -- airborne frames after a flutter ends (finished or released) before another full flutter can start
 local FLUTTER_COOLDOWN_FRAMES = 20
