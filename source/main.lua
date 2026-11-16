@@ -112,7 +112,7 @@ function playdate.update()
    PatrolEnemy.DEBUG = DEBUG
    if DEBUG then
       gfx.setColor(gfx.kColorXOR)
-      gfx.drawRect(player.x - 6, player.y - 10, 17, 25) -- matches setCollideRect(5,5,12,20) offset from player.x/y
+      gfx.drawRect(player.x - 10, player.y - 12, 20, 28) -- matches setCollideRect(6,4,20,28) offset from player.x/y
       PatrolEnemy.drawDebug()
    end
 

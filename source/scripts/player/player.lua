@@ -74,7 +74,10 @@ function Player:init(x, y, gameManager)
     self:moveTo(x, y)
     self:setZIndex(Z_INDEXES.Player)
     self:setTag(TAGS.Player)
-    self:setCollideRect(5, 5, 32, 32)
+    -- Tight box around the drawn Pika art (which is inset inside the 32x32 frame cell),
+    -- not the full cell -- a rect matching the cell size made the hitbox much larger than
+    -- the visible character.
+    self:setCollideRect(6, 4, 20, 28)
     self.collision = PlayerCollision(self)
     self.flutter = PlayerFlutter(self)
     self.slam = PlayerSlam(self, self.flutter)
