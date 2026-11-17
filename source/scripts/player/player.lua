@@ -67,7 +67,7 @@ function Player:init(x, y, gameManager)
     self:addState("run", 2, 4, {tickStep = 4})
     self:addState("jump", 4, 4)
     self:addState("fall", 6, 6)
-    self:addState("flutter", 7, 8, {tickStep = 4})
+    self:addState("flutter", 7, 10, {tickStep = 4})
     self:playAnimation()
 
     -- sprite stuff
