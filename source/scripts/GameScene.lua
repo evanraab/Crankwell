@@ -56,9 +56,7 @@ local entitySpawners <const> = {
     Switch = function(x, y, e) Switch(x, y, e) end,
     BigHelmet = function(x, y, e) BigHelmet(x, y, e) end,
     Checkpoint = function(x, y, e) Checkpoint(x, y, e) end,
-    Breakable = function(x, y, e)
-        BreakableBlock(x, y, ldtk.generate_image_from_entity(e))
-    end,
+    Breakable = function(x, y, e) BreakableBlock(x, y, e) end,
 }
 
 ---@class GameScene
@@ -80,7 +78,7 @@ function GameScene:init()
 
     Checkpoint.onActivated = function(cp) self:setCheckpoint(cp) end
 
-    self.spawnLevel = "Level_11"
+    self.spawnLevel = "Level_10"
     gfx.setBackgroundColor(gfx.kColorBlack)
     gfx.clear()
     local spawnRect = ldtk.get_rect(self.spawnLevel)

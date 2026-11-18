@@ -2,16 +2,19 @@ import "CoreLibs/object"
 import "CoreLibs/sprites"
 
 local gfx <const> = playdate.graphics
+local blockImage <const> = gfx.image.new("images/terrain/breakable-tile-upscaled")
 
 
 --- @class BreakableBlock : playdate.graphics.sprite
 BreakableBlock = {}
 class('BreakableBlock').extends(gfx.sprite)
 
-function BreakableBlock:init(x, y, image)
+
+
+function BreakableBlock:init(x, y)
     BreakableBlock.super.init(self)
 
-    self:setImage(image)
+    self:setImage(blockImage)
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:setCollideRect(0, 0, self:getSize())
