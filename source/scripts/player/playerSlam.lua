@@ -11,7 +11,7 @@ local TILE_SIZE = 20
 local SLAM_MIN_DISTANCE = 3 * TILE_SIZE
 local SLAM_PROBE_LENGTH = 240
 
-local SLAM_SPIN_DELAY_FRAMES = 10 -- hold the fall pose briefly before the spin starts
+local SLAM_SPIN_DELAY_FRAMES = 5 -- hold the fall pose briefly before the spin starts
 local SLAM_SPIN_FRAMES = 10      -- duration of the somersault; tune by feel
 local SLAM_FREEZE_FRAMES = SLAM_SPIN_DELAY_FRAMES + SLAM_SPIN_FRAMES
 
