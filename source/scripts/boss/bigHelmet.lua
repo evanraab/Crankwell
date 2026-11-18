@@ -4,7 +4,7 @@ local gfx <const> = playdate.graphics
 BigHelmet = {}
 class('BigHelmet').extends(Boss)
 
-local SIZE <const> = 48
+local SIZE <const> = 64
 
 local CHARGE_RANGE <const> = 160   -- how far ahead the boss can see
 local VERTICAL_TOLERANCE <const> = 24  -- player must be roughly on the boss's level
@@ -14,7 +14,7 @@ local CRASH_PAUSE_FRAMES <const> = 30   -- boss sits still after a charge (~1s a
 local TURN_PAUSE_FRAMES <const> = 10    -- short beat after flipping before it walks off
 local CRASH_SHAKE_MAGNITUDE <const> = 6
 local CRASH_SHAKE_FRAMES <const> = 15
-local SHEET <const> = "images/bosses/test/mm_wheelie/MM-Wheelie-table-48-32"
+local SHEET <const> = "images/bosses/test/mm_wheelie/big-helmet-table-64-64"
 local VULNERABLE_FRAMES <const> = 120  -- how long the boss stays stunned after a slam
 local FLICKER_FRAMES <const> = 40      -- warning flicker at the end of the window
 local FLICKER_INTERVAL <const> = 3
@@ -26,7 +26,7 @@ local VulnerableState = {}
 
 function BigHelmet:init(x, y, entity)
     BigHelmet.super.init(self, x, y, entity, SHEET)
-    self:setCollideRect(0, 8, 48, 24) -- offset the hit box for player to hit more easily
+    self:setCollideRect(8, 16, 48, 48) -- offset the hit box for player to hit more easily
     self.fsm:add("charge", ChargeState) -- attack states that only this boss has
     self.fsm:add("crash", CrashState)
     self.fsm:add("vulnerable", VulnerableState)

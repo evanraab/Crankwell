@@ -72,14 +72,14 @@ Boss = {}
 class('Boss').extends(Enemy)
 
 -- Optional: point this at a bigger sheet and pass nil for sheetPath
--- Boss.DEFAULT_SHEET = "images/enemies/boss-table-32-32"
+Boss.DEFAULT_SHEET = "images/bosses/test/mm_wheelie/big-helmet-table-64-64"
 Boss.UNPROTECTED_FRAMES = 90  -- ~3s of vulnerability after a slam
 
 function Boss:init(x, y, entity, sheetPath)
     -- Enemy:init adds the sprite itself, so don't call :add() again
     Boss.super.init(self, x, y, entity, sheetPath or Boss.DEFAULT_SHEET)
 
-    self:setCollideRect(0, 0, 48, 32)
+    self:setCollideRect(0, 0, 64, 64)
 
     local fields = entity.fields
     self.baseSpeed = math.abs(self.xVelocity)
@@ -163,8 +163,8 @@ function Boss:updatePatrol()
 end
 
 function Boss:setupAnimations()
-    self:addState("patrol", 1, 2, {tickStep = 4})
-    self:addState("hurt", 7, 7)
+    self:addState("patrol", 1, 4, {tickStep = 4})
+    self:addState("hurt", 5, 5)
 end
 
 function Boss:removeJumpProtectionAnimation()
