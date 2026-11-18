@@ -6,6 +6,8 @@ class("FlyingEnemy").extends(Enemy)
 
 FlyingEnemy.FLYING_ENEMY_SHEET = "images/enemies/flyingEnemy/flying-enemy-table-16-16"
 
+FlyingEnemy.COLLIDE_RECT = { 0, 0, 16, 16 } -- still on 16x16 art
+
 FlyingEnemy.DEFAULT_AMPLITUDE = 20     -- pixels above/below the starting height
 FlyingEnemy.DEFAULT_FREQUENCY = 0.05   -- radians of oscillation advanced per frame
 

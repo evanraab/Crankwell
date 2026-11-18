@@ -9,6 +9,8 @@ class("Enemy").extends(AnimatedSprite)
 Enemy.DEFAULT_SHEET = "images/enemies/enemy-table-32-32"
 Enemy.STUN_FRAMES = 45  -- ~1.5s at Playdate's default 30 fps
 Enemy.ART_FACING = 1   -- 1 = art faces right, -1 = art faces left
+-- x, y, w, h relative to the sprite's top-left; subclasses with different art override this
+Enemy.COLLIDE_RECT = { 6, 12, 20, 18 }
 
 
 function Enemy:init(x, y, entity, sheetPath)
@@ -24,7 +26,7 @@ function Enemy:init(x, y, entity, sheetPath)
     self:add()
     -- Collision Config
     self:setTag(TAGS.Enemy)
-    self:setCollideRect(6, 12, 20, 18)
+    self:setCollideRect(table.unpack(self.COLLIDE_RECT))
 
     self.isDead = false;
     self.canHurtPlayer = true
