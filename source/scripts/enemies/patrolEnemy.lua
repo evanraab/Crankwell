@@ -5,7 +5,6 @@ PatrolEnemy = {}
 class("PatrolEnemy").extends(Enemy)
 
 PatrolEnemy.PATROL_ENEMY_SHEET = "images/enemies/enemy-table-16-16"
-local SIZE <const> = 16 -- enemy sprite size, used for the ledge probe
 local TILE_SIZE <const> = 20
 
 PatrolEnemy.DEBUG = false
@@ -33,8 +32,11 @@ end
 -- Returns true if there is solid ground just ahead of the leading foot
 function PatrolEnemy:isGroundAhead()
     local x, y = self:getPosition() -- top-left, since center is (0, 0)
-    local probeX = (self.xVelocity > 0) and (x + SIZE + 1) or (x - 2)
-    local probeY = y + SIZE + 2
+    -- probe from the collide rect (not the image size) so it tracks the enemy's actual feet
+    local cx, cy, cw, ch = self:getCollideRect():unpack()
+    local left, right, bottom = x + cx, x + cx + cw, y + cy + ch
+    local probeX = (self.xVelocity > 0) and (right + 1) or (left - 2)
+    local probeY = bottom + 2
 
     local sprites = gfx.sprite.querySpritesAtPoint(probeX, probeY)
     local found = false
