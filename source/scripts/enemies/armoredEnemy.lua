@@ -5,7 +5,7 @@ class("ArmoredEnemy").extends(PatrolEnemy)
 
 ArmoredEnemy.ARMORED_ENEMY_SHEET = "images/enemies/armoredEnemy/armored-enemy-table-16-16"
 
-ArmoredEnemy.COLLIDE_RECT = { 0, 0, 16, 16 } -- still on 16x16 art
+ArmoredEnemy.COLLIDE_RECT = { 6, 12, 20, 18 }
 
 ArmoredEnemy.STUN_FRAMES = 45  -- ~1.5s at Playdate's default 30 fps
 
