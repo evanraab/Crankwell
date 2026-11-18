@@ -11,7 +11,9 @@ local TILE_SIZE = 20
 local SLAM_MIN_DISTANCE = 3 * TILE_SIZE
 local SLAM_PROBE_LENGTH = 240
 
-local SLAM_FREEZE_FRAMES = 16  -- a bit longer so the flip reads; tune by feel
+local SLAM_SPIN_DELAY_FRAMES = 10 -- hold the fall pose briefly before the spin starts
+local SLAM_SPIN_FRAMES = 10      -- duration of the somersault; tune by feel
+local SLAM_FREEZE_FRAMES = SLAM_SPIN_DELAY_FRAMES + SLAM_SPIN_FRAMES
 
 local gfx <const> = playdate.graphics
 
@@ -34,10 +36,11 @@ function PlayerSlam:init(player)
 
 end
 
--- 0..1 across the somersault, nil when not in freeze
+-- 0..1 across the somersault, nil when not spinning (outside freeze or during the pre-spin delay)
 function PlayerSlam:getSpinProgress()
     if self.slamPhase ~= "freeze" then return nil end
-    return 1 - (self.slamFreezeTimer / SLAM_FREEZE_FRAMES)
+    if self.slamFreezeTimer > SLAM_SPIN_FRAMES then return nil end
+    return 1 - (self.slamFreezeTimer / SLAM_SPIN_FRAMES)
 end
 
 function PlayerSlam:isPowerSlamming()
