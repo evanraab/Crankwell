@@ -19,9 +19,12 @@ local FADE_FRAMES <const> = 8   -- frames to fade out (and again to fade in)
 local FADE_HOLD <const> = 3     -- frames held fully black
 
 local function verticalOffset(levelName)
+    -- "Down", "Up", or with a tile count ("Down2", "Up3") to peek several tiles
     local peek = ldtk.get_custom_data(levelName, "CameraPeek")
-    if peek == "Down" then return PEEK end
-    if peek == "Up" then return -PEEK end
+    local dir, count = string.match(peek or "", "^(%a+)(%d*)$")
+    local tiles = tonumber(count) or 1
+    if dir == "Down" then return PEEK * tiles end
+    if dir == "Up" then return -PEEK * tiles end
     return 0
 end
 
