@@ -3005,7 +3005,11 @@
 		{ "identifier": "CameraPeek", "uid": 121, "values": [
 			{ "id": "Up", "tileRect": null, "color": 14120515 },
 			{ "id": "Down", "tileRect": null, "color": 12470831 },
-			{ "id": "None", "tileRect": null, "color": 15389866 }
+			{ "id": "None", "tileRect": null, "color": 15389866 },
+			{ "id": "Up2", "tileRect": null, "color": 14984818 },
+			{ "id": "Up3", "tileRect": null, "color": 7552569 },
+			{ "id": "Down2", "tileRect": null, "color": 4073265 },
+			{ "id": "Down3", "tileRect": null, "color": 16690740 }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [
 		{
@@ -15525,9 +15529,9 @@
 			"__smartColor": "#737373",
 			"__bgPos": null,
 			"externalRelPath": null,
-			"fieldInstances": [{ "__identifier": "CameraPeek", "__type": "LocalEnum.CameraPeek", "__value": "Down", "__tile": null, "defUid": 123, "realEditorValues": [{
+			"fieldInstances": [{ "__identifier": "CameraPeek", "__type": "LocalEnum.CameraPeek", "__value": "Down2", "__tile": null, "defUid": 123, "realEditorValues": [{
 				"id": "V_String",
-				"params": ["Down"]
+				"params": ["Down2"]
 			}] }],
 			"layerInstances": [
 				{
@@ -16672,8 +16676,8 @@
 					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -16701,9 +16705,9 @@
 						{ "px": [340,220], "src": [20,0], "f": 0, "t": 1, "d": [149,237], "a": 1 },
 						{ "px": [360,220], "src": [20,0], "f": 0, "t": 1, "d": [149,238], "a": 1 },
 						{ "px": [380,220], "src": [20,0], "f": 0, "t": 1, "d": [149,239], "a": 1 },
-						{ "px": [100,40], "src": [20,100], "f": 0, "t": 31, "d": [141,45], "a": 1 },
-						{ "px": [120,40], "src": [80,100], "f": 0, "t": 34, "d": [140,46], "a": 1 },
-						{ "px": [80,40], "src": [0,100], "f": 0, "t": 30, "d": [139,44], "a": 1 }
+						{ "px": [100,20], "src": [20,100], "f": 0, "t": 31, "d": [141,25], "a": 1 },
+						{ "px": [120,20], "src": [80,100], "f": 0, "t": 34, "d": [140,26], "a": 1 },
+						{ "px": [80,20], "src": [0,100], "f": 0, "t": 30, "d": [139,24], "a": 1 }
 					],
 					"seed": 8736949,
 					"overrideTilesetUid": null,
