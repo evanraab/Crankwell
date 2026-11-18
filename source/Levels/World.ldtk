@@ -17790,7 +17790,7 @@
 							"height": 40,
 							"defUid": 106,
 							"px": [180,180],
-							"fieldInstances": [{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 126, "realEditorValues": [] }],
+							"fieldInstances": [{ "__identifier": "xVelocity", "__type": "Float", "__value": 2, "__tile": null, "defUid": 126, "realEditorValues": [{ "id": "V_Float", "params": [2] }] }],
 							"__worldX": 4660,
 							"__worldY": 1396
 						},
