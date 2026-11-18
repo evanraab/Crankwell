@@ -6,7 +6,7 @@ local enemyImage <const> = gfx.image.new("images/enemies/enemy")
 Enemy = {}
 class("Enemy").extends(AnimatedSprite)
 
-Enemy.DEFAULT_SHEET = "images/enemies/enemy-table-16-16"
+Enemy.DEFAULT_SHEET = "images/enemies/enemy-table-32-32"
 Enemy.STUN_FRAMES = 45  -- ~1.5s at Playdate's default 30 fps
 Enemy.ART_FACING = 1   -- 1 = art faces right, -1 = art faces left
 
@@ -24,7 +24,7 @@ function Enemy:init(x, y, entity, sheetPath)
     self:add()
     -- Collision Config
     self:setTag(TAGS.Enemy)
-    self:setCollideRect(0, 0, 16, 16)
+    self:setCollideRect(0, 0, 32, 32)
 
     self.isDead = false;
     self.canHurtPlayer = true

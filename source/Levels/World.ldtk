@@ -1925,8 +1925,8 @@
 			"exportToToc": false,
 			"allowOutOfBounds": false,
 			"doc": null,
-			"width": 16,
-			"height": 16,
+			"width": 32,
+			"height": 32,
 			"resizableX": false,
 			"resizableY": false,
 			"minWidth": null,
@@ -3178,8 +3178,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "338754c0-bde0-11f1-99fc-77d16091e72d",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [1136,160],
 							"fieldInstances": [
@@ -3198,8 +3198,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "5b2ebd50-bde0-11f1-99fc-9bb1d79a1287",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [1552,144],
 							"fieldInstances": [
@@ -6092,8 +6092,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "4378e100-bde0-11f1-a629-e751b64a5658",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [368,144],
 							"fieldInstances": [
@@ -8850,8 +8850,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "fd3f0a20-bde0-11f1-806f-6301bf1aa87c",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [336,80],
 							"fieldInstances": [
@@ -10407,8 +10407,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "f063b800-bde0-11f1-806f-d50d32343cf5",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [1088,80],
 							"fieldInstances": [
@@ -11764,8 +11764,8 @@
 							"__tile": null,
 							"__smartColor": "#FF0044",
 							"iid": "af4f8f00-bde0-11f1-806f-198391528b25",
-							"width": 16,
-							"height": 16,
+							"width": 32,
+							"height": 32,
 							"defUid": 43,
 							"px": [384,208],
 							"fieldInstances": [
@@ -15320,6 +15320,26 @@
 							"px": [48,192],
 							"fieldInstances": [],
 							"__worldX": 3648,
+							"__worldY": 672
+						},
+						{
+							"__identifier": "PatrolEnemy",
+							"__grid": [11,12],
+							"__pivot": [0,0],
+							"__tags": ["Enemy"],
+							"__tile": null,
+							"__smartColor": "#FF0044",
+							"iid": "af735d30-bde0-11f1-817c-157686f905b9",
+							"width": 32,
+							"height": 32,
+							"defUid": 43,
+							"px": [176,192],
+							"fieldInstances": [
+								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 44, "realEditorValues": [] },
+								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
+								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] }
+							],
+							"__worldX": 3776,
 							"__worldY": 672
 						}
 					]
