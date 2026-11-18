@@ -24,7 +24,7 @@ function Enemy:init(x, y, entity, sheetPath)
     self:add()
     -- Collision Config
     self:setTag(TAGS.Enemy)
-    self:setCollideRect(0, 0, 32, 32)
+    self:setCollideRect(6, 12, 20, 18)
 
     self.isDead = false;
     self.canHurtPlayer = true
