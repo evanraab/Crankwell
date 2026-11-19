@@ -41,6 +41,8 @@ import "scripts/boss/bossHealth"
 
 import "scripts/checkPoints/checkPoint"
 
+import "scripts/effects/deathParticles"
+
 local GameScene = import "scripts/GameScene"
 GameScene:init()
 

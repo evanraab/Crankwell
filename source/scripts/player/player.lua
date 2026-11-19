@@ -25,6 +25,11 @@ local COYOTE_FRAMES = 6
 local SLAM_SHAKE_MAGNITUDE = 4 -- pixels
 local SLAM_SHAKE_FRAMES = 8
 
+-- death properties
+local DEATH_RESPAWN_DELAY = 700 -- ms; long enough for the death particles to play out
+local DEATH_SHAKE_MAGNITUDE = 3 -- pixels
+local DEATH_SHAKE_FRAMES = 10
+
 local DEBUG = false
 
 -- cranking logic
@@ -243,13 +248,20 @@ function Player:checkForConsumeJump()
 end
 
 function Player:die()
+    if self.dead then
+        return
+    end
     self.slam.slamPhase = nil
     self.xVelocity = 0
     self.yVelocity = 0
     self.slam.powered = false
     self.dead = true
     self:setCollisionsEnabled(false)
-    pd.timer.performAfterDelay(200, function()
+    self:setVisible(false)
+    DeathParticles.burst(self.x, self.y)
+    self.gameManager.camera:shake(DEATH_SHAKE_MAGNITUDE, DEATH_SHAKE_FRAMES)
+    pd.timer.performAfterDelay(DEATH_RESPAWN_DELAY, function()
+        self:setVisible(true)
         self:setCollisionsEnabled(true)
         self.dead = false
         self.gameManager:resetPlayer()
