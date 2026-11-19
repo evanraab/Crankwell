@@ -1,7 +1,7 @@
 
 local gfx <const> = playdate.graphics
 
-local spikeImage <const> = gfx.image.new("images/spike")
+local spikeImage <const> = gfx.image.new("images/hazzards/spikes/spike")
 
 --- @class Spike : playdate.graphics.sprite
 --- @overload fun(...): Spike
@@ -17,7 +17,7 @@ function Spike:init(x, y)
     self:add()
 
     self:setTag(TAGS.Hazzard)
-    self:setCollideRect(2, 9, 12, 7)
+    self:setCollideRect(5, 10, 12, 12)
 end
 
 
