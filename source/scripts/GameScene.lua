@@ -12,7 +12,8 @@ TAGS = {
     Pickup = 3,
     Enemy = 4,
     Breakable = 5,
-    Checkpoint = 6
+    Checkpoint = 6,
+    Platform = 7
 
 }
 
@@ -20,6 +21,7 @@ Z_INDEXES = {
     Player = 100,
     Pickup = 50,
     Enemy = 40,
+    Platform = 30,
     Hazzard = 20
 }
 
@@ -57,6 +59,7 @@ local entitySpawners <const> = {
     BigHelmet = function(x, y, e) BigHelmet(x, y, e) end,
     Checkpoint = function(x, y, e) Checkpoint(x, y, e) end,
     Breakable = function(x, y, e) BreakableBlock(x, y, e) end,
+    MovingPlatform = function(x, y, e) MovingPlatform(x, y, e) end,
 }
 
 ---@class GameScene

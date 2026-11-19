@@ -127,7 +127,12 @@ function Enemy:moveAndCollide(prevX, prevY)
             if collision.normal.y ~= 0 and self.affectedByGravity then
                 self.fallSpeed = 0
                 self.yVelocity = 0
-                if collision.normal.y == -1 then self.onGround = true end
+                if collision.normal.y == -1 then
+                    self.onGround = true
+                    if collision.other:getTag() == TAGS.Platform then
+                        collision.other:addRider(self)
+                    end
+                end
             elseif collision.normal.x ~= 0 or not self.affectedByGravity then
                 hitWall = true
             end

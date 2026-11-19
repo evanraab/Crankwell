@@ -59,6 +59,9 @@ function PlayerCollision:moveAndCollide()
 
         if collision.type == gfx.sprite.kCollisionTypeSlide then
             self:handleSurfaceCollision(collision)
+            if collision.normal.y == -1 and other:getTag() == TAGS.Platform then
+                other:addRider(player)
+            end
         end
 
         if other:isa(Enemy) then
