@@ -4,9 +4,9 @@ local gfx <const> = playdate.graphics
 FlyingEnemy = {}
 class("FlyingEnemy").extends(Enemy)
 
-FlyingEnemy.FLYING_ENEMY_SHEET = "images/enemies/flyingEnemy/flying-enemy-table-16-16"
+FlyingEnemy.FLYING_ENEMY_SHEET = "images/enemies/flyingEnemy/flying-enemy-table-32-32"
 
-FlyingEnemy.COLLIDE_RECT = { 0, 0, 16, 16 } -- still on 16x16 art
+FlyingEnemy.COLLIDE_RECT = { 6, 12, 20, 18 }
 
 FlyingEnemy.DEFAULT_AMPLITUDE = 20     -- pixels above/below the starting height
 FlyingEnemy.DEFAULT_FREQUENCY = 0.05   -- radians of oscillation advanced per frame
@@ -34,5 +34,5 @@ function FlyingEnemy:applyGravity()
 end
 
 function FlyingEnemy:setupAnimations()
-      self:addState("patrol", 1, 3, {tickStep = 4})
+      self:addState("patrol", 1, 2, {tickStep = 4})
 end
