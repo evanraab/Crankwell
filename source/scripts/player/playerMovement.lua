@@ -13,6 +13,7 @@ local FLUTTER_MAX_SPEED = 1.5
 local FLUTTER_TURN_BRAKE = 0.5
 
 --- @class PlayerMovement
+--- @overload fun(...): PlayerMovement
 PlayerMovement = {}
 class('PlayerMovement').extends()
 

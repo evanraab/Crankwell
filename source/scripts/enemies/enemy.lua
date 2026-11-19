@@ -3,6 +3,7 @@ local enemyImage <const> = gfx.image.new("images/enemies/enemy")
 
 
 --- @class Enemy : AnimatedSprite
+--- @overload fun(...): Enemy
 Enemy = {}
 class("Enemy").extends(AnimatedSprite)
 

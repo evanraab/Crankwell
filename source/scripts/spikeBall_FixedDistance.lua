@@ -1,3 +1,5 @@
+--- @class SpikeBall_FixedDistance : Spikeball
+--- @overload fun(...): SpikeBall_FixedDistance
 SpikeBall_FixedDistance = {}
 
 class('SpikeBall_FixedDistance').extends(Spikeball)

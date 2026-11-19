@@ -4,6 +4,7 @@ import "CoreLibs/graphics"
 local gfx <const> = playdate.graphics
 
 --- @class Inventory
+--- @overload fun(...): Inventory
 Inventory = {}
 class('Inventory').extends()
 

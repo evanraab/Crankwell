@@ -1,4 +1,5 @@
 --- @class Key: Collectible
+--- @overload fun(...): Key
 Key = {}
 class('Key').extends(Collectible)
 

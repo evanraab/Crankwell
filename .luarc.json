@@ -1,0 +1,42 @@
+{
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+    "runtime.version": "Lua 5.4",
+    "runtime.special": {
+        "import": "require"
+    },
+    "runtime.path": [
+        "?.lua",
+        "?/init.lua",
+        "source/?.lua",
+        "source/?/init.lua"
+    ],
+    "runtime.builtin": {
+        "io": "disable",
+        "os": "disable",
+        "package": "disable"
+    },
+    "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+    "workspace.library": [
+        "./.vscode/playdate-luacats"
+    ],
+    "workspace.ignoreDir": [
+        "builds",
+        ".sentry-native"
+    ],
+    "workspace.checkThirdParty": false,
+    "codeLens.enable": true,
+    "hint.enable": true,
+    "diagnostics.globals": [
+        "import"
+    ],
+    "diagnostics.severity": {
+        "duplicate-set-field": "Hint"
+    },
+    "diagnostics.disable": [
+        "need-check-nil"
+    ],
+    "format.defaultConfig": {
+        "indent_style": "space",
+        "indent_size": "4"
+    }
+}

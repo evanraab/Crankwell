@@ -68,6 +68,7 @@ end
 --------------------------------------------------------------------------------
 
 --- @class Boss : Enemy
+--- @overload fun(...): Boss
 Boss = {}
 class('Boss').extends(Enemy)
 

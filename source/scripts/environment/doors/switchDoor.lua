@@ -1,6 +1,7 @@
 local gfx <const> = playdate.graphics
 
 ---@class SwitchDoor : Door
+--- @overload fun(...): SwitchDoor
 SwitchDoor = {}
 class('SwitchDoor').extends(Door)
 

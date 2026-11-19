@@ -2,6 +2,7 @@ local gfx <const> = playdate.graphics
 
 
 --- @class Switch: playdate.graphics.sprite
+--- @overload fun(...): Switch
 Switch = {}
 class('Switch').extends(gfx.sprite)
 

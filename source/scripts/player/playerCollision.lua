@@ -10,6 +10,7 @@ local DEFAULT_BOUNCE <const> = {
     graceFrames = STOMP_GRACE_FRAMES,
 }
 --- @class PlayerCollision
+--- @overload fun(...): PlayerCollision
 PlayerCollision = {}
 class('PlayerCollision').extends()
 

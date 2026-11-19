@@ -1,5 +1,6 @@
 
 ---@class ArmoredEnemy : PatrolEnemy
+--- @overload fun(...): ArmoredEnemy
 ArmoredEnemy = {}
 class("ArmoredEnemy").extends(PatrolEnemy)
 

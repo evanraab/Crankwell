@@ -1,6 +1,7 @@
 local gfx <const> = playdate.graphics
 
 --- @class Collectible : playdate.graphics.sprite
+--- @overload fun(...): Collectible
 Collectible = {}
 class('Collectible').extends(gfx.sprite)
 

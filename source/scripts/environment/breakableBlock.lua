@@ -6,6 +6,7 @@ local blockImage <const> = gfx.image.new("images/terrain/breakable-tile-upscaled
 
 
 --- @class BreakableBlock : playdate.graphics.sprite
+--- @overload fun(...): BreakableBlock
 BreakableBlock = {}
 class('BreakableBlock').extends(gfx.sprite)
 

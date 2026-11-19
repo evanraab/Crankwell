@@ -19,6 +19,7 @@ local gfx <const> = playdate.graphics
 
 
 --- @class PlayerSlam
+--- @overload fun(...): PlayerSlam
 PlayerSlam = {}
 class('PlayerSlam').extends()
 

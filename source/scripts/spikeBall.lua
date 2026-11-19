@@ -1,6 +1,8 @@
 local gfx <const> = playdate.graphics
 local spikeBallImage <const> = gfx.image.new("images/spikeball")
 
+--- @class Spikeball : playdate.graphics.sprite
+--- @overload fun(...): Spikeball
 Spikeball = {}
 class('Spikeball').extends(gfx.sprite)
 

@@ -1,6 +1,7 @@
 --- Minimal state machine. A state is any table with optional
 --- enter(self, owner, ...), update(self, owner) and exit(self, owner) functions.
 --- @class StateMachine
+--- @overload fun(...): StateMachine
 StateMachine = {}
 class('StateMachine').extends()
 

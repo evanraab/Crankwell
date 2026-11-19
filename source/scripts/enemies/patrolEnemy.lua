@@ -1,6 +1,7 @@
 local gfx <const> = playdate.graphics
 
 --- @class PatrolEnemy : Enemy
+--- @overload fun(...): PatrolEnemy
 PatrolEnemy = {}
 class("PatrolEnemy").extends(Enemy)
 

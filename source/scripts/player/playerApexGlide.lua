@@ -1,4 +1,5 @@
 --- @class PlayerApexGlide
+--- @overload fun(...): PlayerApexGlide
 PlayerApexGlide = {}
 class('PlayerApexGlide').extends()
 

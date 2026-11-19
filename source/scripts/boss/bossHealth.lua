@@ -1,6 +1,7 @@
 --- Tracks hit points and a short invulnerability window after each hit.
 --- Knows nothing about sprites, so it can be reused for any damageable thing.
 --- @class BossHealth
+--- @overload fun(...): BossHealth
 BossHealth = {}
 class('BossHealth').extends()
 

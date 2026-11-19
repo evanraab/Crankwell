@@ -1,4 +1,5 @@
 --- @class Ability: Collectible
+--- @overload fun(...): Ability
 Ability = {}
 class('Ability').extends(Collectible)
 

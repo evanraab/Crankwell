@@ -13,6 +13,7 @@ local FLUTTER_DROP_SPEED = 2.4
 local FLUTTER_COOLDOWN_FRAMES = 20
 
 --- @class PlayerFlutter
+--- @overload fun(...): PlayerFlutter
 PlayerFlutter = {}
 class('PlayerFlutter').extends()
 

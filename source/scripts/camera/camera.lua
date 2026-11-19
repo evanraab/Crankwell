@@ -49,6 +49,7 @@ local function willLeaveNorth(y, vy)
 end
 
 ---@class Camera
+--- @overload fun(...): Camera
 ---@field x number
 ---@field y number
 local Camera = {}

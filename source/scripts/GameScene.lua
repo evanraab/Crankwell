@@ -60,6 +60,7 @@ local entitySpawners <const> = {
 }
 
 ---@class GameScene
+--- @overload fun(...): GameScene
 ---@field init fun(self: GameScene)
 local GameScene = {}
 

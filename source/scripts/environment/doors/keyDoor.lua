@@ -1,4 +1,5 @@
 ---@class KeyDoor : Door
+--- @overload fun(...): KeyDoor
 KeyDoor = {}
 class('KeyDoor').extends(Door)
 

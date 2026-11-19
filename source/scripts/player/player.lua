@@ -4,6 +4,7 @@ local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
 --- @class Player : AnimatedSprite
+--- @overload fun(...): Player
 Player = {}
 class('Player').extends(AnimatedSprite)
 
