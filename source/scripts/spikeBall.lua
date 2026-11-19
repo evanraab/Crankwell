@@ -1,5 +1,5 @@
 local gfx <const> = playdate.graphics
-local spikeBallImage <const> = gfx.image.new("images/spikeball")
+local spikeBallImage <const> = gfx.image.new("images/hazzards/spikeball/spikeball")
 
 --- @class Spikeball : playdate.graphics.sprite
 --- @overload fun(...): Spikeball
@@ -15,7 +15,7 @@ function Spikeball:init(x, y, entity)
     self:add()
 
     self:setTag(TAGS.Hazzard)
-    self:setCollideRect(4, 4, 16, 16)
+    self:setCollideRect(8, 8, 32, 32)
 
     local fields = entity.fields
     self.xVelocity = fields.xVelocity

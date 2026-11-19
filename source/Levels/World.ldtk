@@ -1555,7 +1555,7 @@
 			"exportToToc": false,
 			"allowOutOfBounds": false,
 			"doc": null,
-			"width": 16,
+			"width": 20,
 			"height": 16,
 			"resizableX": false,
 			"resizableY": false,
@@ -3050,10 +3050,7 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": {
-						"id": "V_Float",
-						"params": [1]
-					},
+					"defaultOverride": { "id": "V_Float", "params": [1] },
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -3090,10 +3087,7 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": {
-						"id": "V_Int",
-						"params": [30]
-					},
+					"defaultOverride": { "id": "V_Int", "params": [30] },
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -3374,7 +3368,7 @@
 							"__tile": null,
 							"__smartColor": "#D77643",
 							"iid": "8759ceb0-bde0-11f1-99fc-8195668729cb",
-							"width": 16,
+							"width": 20,
 							"height": 16,
 							"defUid": 28,
 							"px": [2080,144],
@@ -6226,7 +6220,7 @@
 							"__tile": null,
 							"__smartColor": "#D77643",
 							"iid": "830c2ae0-bde0-11f1-806f-6f042a47dd49",
-							"width": 16,
+							"width": 20,
 							"height": 16,
 							"defUid": 28,
 							"px": [1136,48],
@@ -10535,7 +10529,7 @@
 							"__tile": null,
 							"__smartColor": "#D77643",
 							"iid": "e8ba3390-bde0-11f1-806f-092d83ac04e2",
-							"width": 16,
+							"width": 20,
 							"height": 16,
 							"defUid": 28,
 							"px": [672,176],
@@ -15733,24 +15727,23 @@
 							"__worldY": 968
 						},
 						{
-							"__identifier": "PatrolEnemy",
-							"__grid": [14,10],
+							"__identifier": "Spikeball",
+							"__grid": [13,7],
 							"__pivot": [0,0],
-							"__tags": ["Enemy"],
+							"__tags": ["Hazzard"],
 							"__tile": null,
-							"__smartColor": "#FF0044",
-							"iid": "c43ac6b0-bde0-11f1-a89b-05804ae1439c",
+							"__smartColor": "#D77643",
+							"iid": "09cbcdd0-bde0-11f1-98e1-797c94ed4f41",
 							"width": 20,
-							"height": 20,
-							"defUid": 43,
-							"px": [280,200],
+							"height": 16,
+							"defUid": 28,
+							"px": [260,140],
 							"fieldInstances": [
-								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 44, "realEditorValues": [] },
-								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] }
+								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 29, "realEditorValues": [] },
+								{ "__identifier": "yVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 30, "realEditorValues": [] }
 							],
-							"__worldX": 3848,
-							"__worldY": 968
+							"__worldX": 3828,
+							"__worldY": 908
 						}
 					]
 				},
