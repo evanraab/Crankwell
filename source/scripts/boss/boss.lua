@@ -75,6 +75,7 @@ class('Boss').extends(Enemy)
 -- Optional: point this at a bigger sheet and pass nil for sheetPath
 Boss.DEFAULT_SHEET = "images/bosses/test/mm_wheelie/big-helmet-table-64-64"
 Boss.UNPROTECTED_FRAMES = 90  -- ~3s of vulnerability after a slam
+Boss.DEATH_FX = DeathParticles.BOSS   -- bigger burst than a regular enemy
 
 function Boss:init(x, y, entity, sheetPath)
     -- Enemy:init adds the sprite itself, so don't call :add() again

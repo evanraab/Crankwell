@@ -12,6 +12,7 @@ Enemy.STUN_FRAMES = 45  -- ~1.5s at Playdate's default 30 fps
 Enemy.ART_FACING = 1   -- 1 = art faces right, -1 = art faces left
 -- x, y, w, h relative to the sprite's top-left; subclasses with different art override this
 Enemy.COLLIDE_RECT = { 6, 12, 20, 18 }
+Enemy.DEATH_FX = DeathParticles.ENEMY  -- particle style for the death burst; subclasses can override
 
 
 function Enemy:init(x, y, entity, sheetPath)
@@ -196,10 +197,14 @@ function Enemy:recoverFromStun()
 end
 
 function Enemy:damageEnemy()
+    if self.dead then
+        return
+    end
     self.xVelocity = 0
     self.yVelocity = 0
     self.dead = true
     self:setCollisionsEnabled(false)
+    DeathParticles.burst(self.x, self.y, self.DEATH_FX)
     self:destroy()
 end
 

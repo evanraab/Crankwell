@@ -6,6 +6,7 @@ import "CoreLibs/animation"
 
 import "scripts/libraries/LDtk"
 import "scripts/libraries/AnimatedSprite"
+import "scripts/effects/deathParticles" -- before enemies: they reference its styles at load time
 import "scripts/player/playerCollision"
 import "scripts/player/player"
 import "scripts/player/playerFlutter"
@@ -40,8 +41,6 @@ import "scripts/boss/bigHelmet"
 import "scripts/boss/bossHealth"
 
 import "scripts/checkPoints/checkPoint"
-
-import "scripts/effects/deathParticles"
 
 local GameScene = import "scripts/GameScene"
 GameScene:init()

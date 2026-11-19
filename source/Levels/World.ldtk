@@ -15580,23 +15580,24 @@
 							"__worldY": 968
 						},
 						{
-							"__identifier": "FlyingEnemy",
-							"__grid": [13,7],
+							"__identifier": "PatrolEnemy",
+							"__grid": [14,10],
 							"__pivot": [0,0],
 							"__tags": ["Enemy"],
 							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "c1882ed0-bde0-11f1-91a7-e9d59246860a",
+							"__smartColor": "#FF0044",
+							"iid": "c43ac6b0-bde0-11f1-a89b-05804ae1439c",
 							"width": 20,
 							"height": 20,
-							"defUid": 131,
-							"px": [260,140],
+							"defUid": 43,
+							"px": [280,200],
 							"fieldInstances": [
-								{ "__identifier": "oscillationAmplitude", "__type": "Float", "__value": 0, "__tile": null, "defUid": 132, "realEditorValues": [] },
-								{ "__identifier": "oscillationFrequency", "__type": "Float", "__value": 0, "__tile": null, "defUid": 133, "realEditorValues": [] }
+								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 44, "realEditorValues": [] },
+								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
+								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] }
 							],
-							"__worldX": 3828,
-							"__worldY": 908
+							"__worldX": 3848,
+							"__worldY": 968
 						}
 					]
 				},
