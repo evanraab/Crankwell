@@ -13,8 +13,7 @@ TAGS = {
     Enemy = 4,
     Breakable = 5,
     Checkpoint = 6,
-    Platform = 7
-
+    Platform = 7,
 }
 
 Z_INDEXES = {
@@ -22,7 +21,6 @@ Z_INDEXES = {
     Pickup = 50,
     Enemy = 40,
     Platform = 30,
-    Hazzard = 20
 }
 
 local ENEMY_ENTITIES <const> = {
