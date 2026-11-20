@@ -12,6 +12,9 @@ local DIRECTIONS <const> = {
 local DEFAULT_FIRE_INTERVAL <const> = 1.5 -- seconds between shots
 local DEFAULT_BULLET_SPEED <const> = 3     -- pixels per frame
 
+local SCREEN_WIDTH <const> = playdate.display.getWidth()
+local SCREEN_HEIGHT <const> = playdate.display.getHeight()
+
 ---@class ProjectileShooter : playdate.graphics.sprite
 ---@overload fun(...): ProjectileShooter
 ProjectileShooter = {}
@@ -40,9 +43,19 @@ function ProjectileShooter:init(x, y, entity)
     self.fireTimer.repeats = true
 end
 
+-- True when any part of the shooter is inside the camera's view.
+-- The camera scrolls via gfx.setDrawOffset(-camX, -camY), so the offset gives the view's world position.
+function ProjectileShooter:isOnScreen()
+    local offsetX, offsetY = gfx.getDrawOffset()
+    local viewX, viewY = -offsetX, -offsetY
+    local w, h = self:getSize()
+    -- sprite center is (0,0), so self.x/self.y is the top-left corner
+    return self.x + w > viewX and self.x < viewX + SCREEN_WIDTH
+       and self.y + h > viewY and self.y < viewY + SCREEN_HEIGHT
+end
+
 function ProjectileShooter:shootProjectile()
-    -- Only shoot if the shooter is visible on screen
-    if not self:isVisible() then
+    if not self:isOnScreen() then
         return
     end
 
