@@ -49,13 +49,17 @@ end
 function Bullet:update()
     local _, _, collisions, length = self:moveWithCollisions(self.x + self.velocityX, self.y + self.velocityY)
 
-    if length > 0 then
-        local other = collisions[1].other
-        if other:getTag() == TAGS.Player then
-            other:die()
-        elseif other.onBulletCollision then
-            other:onBulletCollision(self)
+    for i = 1, length do
+        local other = collisions[i].other
+        -- bullets pass through each other instead of destroying themselves
+        if not other:isa(Bullet) then
+            if other:getTag() == TAGS.Player then
+                other:die()
+            elseif other.onBulletCollision then
+                other:onBulletCollision(self)
+            end
+            self:destroy()
+            return
         end
-        self:destroy()
     end
 end
