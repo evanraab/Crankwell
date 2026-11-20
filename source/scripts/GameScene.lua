@@ -60,6 +60,7 @@ local entitySpawners <const> = {
     Breakable = function(x, y, e) BreakableBlock(x, y, e) end,
     MovingPlatform = function(x, y, e) MovingPlatform(x, y, e) end,
     ProjectileShooter = function(x, y, e) ProjectileShooter(x, y, e) end,
+    FireTrap = function(x, y, e) FireTrap(x, y, e) end,
 }
 
 ---@class GameScene
