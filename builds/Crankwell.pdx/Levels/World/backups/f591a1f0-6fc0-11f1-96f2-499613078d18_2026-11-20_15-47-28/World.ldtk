@@ -11,7 +11,7 @@
 	"iid": "f591a1f0-6fc0-11f1-96f2-499613078d18",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 169,
+	"nextUid": 170,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -3237,7 +3237,7 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": null,
+					"defaultOverride": { "id": "V_Float", "params": [3] },
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -3248,6 +3248,41 @@
 					"tilesetUid": null
 				}
 			]
+		},
+		{
+			"identifier": "FireTrap",
+			"uid": 169,
+			"tags": ["Hazzard"],
+			"exportToToc": false,
+			"allowOutOfBounds": false,
+			"doc": null,
+			"width": 20,
+			"height": 20,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#F77622",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0,
+			"pivotY": 0,
+			"fieldDefs": []
 		}
 	], "tilesets": [
 		{
@@ -15322,7 +15357,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,
-						1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -15835,12 +15870,7 @@
 						{ "px": [860,160], "src": [0,0], "f": 0, "t": 0, "d": [145,1003], "a": 1 },
 						{ "px": [1020,160], "src": [0,0], "f": 0, "t": 0, "d": [145,1011], "a": 1 },
 						{ "px": [1380,160], "src": [0,0], "f": 0, "t": 0, "d": [145,1029], "a": 1 },
-						{ "px": [400,200], "src": [0,0], "f": 0, "t": 0, "d": [145,1220], "a": 1 },
-						{ "px": [260,140], "src": [20,100], "f": 0, "t": 31, "d": [141,853], "a": 1 },
-						{ "px": [280,140], "src": [20,100], "f": 0, "t": 31, "d": [141,854], "a": 1 },
-						{ "px": [300,140], "src": [80,100], "f": 0, "t": 34, "d": [140,855], "a": 1 },
-						{ "px": [240,140], "src": [0,100], "f": 0, "t": 30, "d": [139,852], "a": 1 },
-						{ "px": [360,140], "src": [100,100], "f": 0, "t": 35, "d": [138,858], "a": 1 }
+						{ "px": [400,200], "src": [0,0], "f": 0, "t": 0, "d": [145,1220], "a": 1 }
 					],
 					"seed": 5838452,
 					"overrideTilesetUid": null,
@@ -15885,22 +15915,6 @@
 							"px": [60,200],
 							"fieldInstances": [],
 							"__worldX": 3628,
-							"__worldY": 968
-						},
-						{
-							"__identifier": "Spike",
-							"__grid": [9,10],
-							"__pivot": [0,0],
-							"__tags": ["Hazzard"],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "bb7c3ce0-bde0-11f1-98e1-15d9c74b2ea1",
-							"width": 20,
-							"height": 20,
-							"defUid": 27,
-							"px": [180,200],
-							"fieldInstances": [],
-							"__worldX": 3748,
 							"__worldY": 968
 						}
 					]

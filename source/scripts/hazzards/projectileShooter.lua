@@ -41,6 +41,11 @@ function ProjectileShooter:init(x, y, entity)
 end
 
 function ProjectileShooter:shootProjectile()
+    -- Only shoot if the shooter is visible on screen
+    if not self:isVisible() then
+        return
+    end
+
     local w, h = self:getSize()
     -- Spawn at the edge of the shooter on the side it fires from (sprite center is 0,0 = top-left)
     local spawnX = self.x + w / 2 + self.facing.x * w / 2

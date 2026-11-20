@@ -15916,6 +15916,26 @@
 							"fieldInstances": [],
 							"__worldX": 3628,
 							"__worldY": 968
+						},
+						{
+							"__identifier": "ProjectileShooter",
+							"__grid": [30,6],
+							"__pivot": [0,0],
+							"__tags": ["Hazzard"],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"iid": "f5f830b0-e4f0-11f1-af26-9779f5a230f5",
+							"width": 20,
+							"height": 40,
+							"defUid": 164,
+							"px": [600,120],
+							"fieldInstances": [
+								{ "__identifier": "direction", "__type": "LocalEnum.ProjectileShooters", "__value": "Left", "__tile": null, "defUid": 166, "realEditorValues": [] },
+								{ "__identifier": "fireInterval", "__type": "Int", "__value": 5, "__tile": null, "defUid": 167, "realEditorValues": [] },
+								{ "__identifier": "bulletSpeed", "__type": "Float", "__value": 3, "__tile": null, "defUid": 168, "realEditorValues": [] }
+							],
+							"__worldX": 4168,
+							"__worldY": 888
 						}
 					]
 				},
