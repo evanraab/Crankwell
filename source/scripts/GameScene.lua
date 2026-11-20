@@ -20,6 +20,7 @@ Z_INDEXES = {
     Player = 100,
     Pickup = 50,
     Enemy = 40,
+    Hazzard = 35,
     Platform = 30,
 }
 
@@ -58,6 +59,7 @@ local entitySpawners <const> = {
     Checkpoint = function(x, y, e) Checkpoint(x, y, e) end,
     Breakable = function(x, y, e) BreakableBlock(x, y, e) end,
     MovingPlatform = function(x, y, e) MovingPlatform(x, y, e) end,
+    ProjectileShooter = function(x, y, e) ProjectileShooter(x, y, e) end,
 }
 
 ---@class GameScene

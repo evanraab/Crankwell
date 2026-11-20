@@ -1,6 +1,8 @@
 local gfx <const> = playdate.graphics
 local imageBullet <const> = gfx.image.new("images/hazzards/bullets/bullet_1")
 
+local BULLET_LIFETIME <const> = 4000 -- ms
+
 --- @class Bullet : playdate.graphics.sprite
 ---@overload fun(...): Bullet
 Bullet = {}
@@ -12,36 +14,48 @@ function Bullet:init()
     self.velocityX = 0
     self.velocityY = 0
 
+    self:setZIndex(Z_INDEXES.Hazzard)
+    self:setTag(TAGS.Hazzard)
     self:setCollideRect(0, 0, self:getSize())
 end
-
 
 function Bullet:collisionResponse(other)
     return gfx.sprite.kCollisionTypeOverlap
 end
 
-function Bullet:spawn(posX, posY, velX, velY)
+-- Called with a dot: Bullet.spawn(x, y, velX, velY)
+function Bullet.spawn(posX, posY, velX, velY)
     local bullet = Bullet()
 
-    bullet:add()
     bullet:moveTo(posX, posY)
     bullet.velocityX = velX
     bullet.velocityY = velY
+    bullet:add()
 
-    bullet.destroyTimer = playdate.timer.new(4000, bullet.destroy, bullet)
+    bullet.destroyTimer = playdate.timer.new(BULLET_LIFETIME, function()
+        bullet:destroy()
+    end)
+    return bullet
 end
 
-function Bulletr:update()
-    local _, _, collisions = self:moveWithCollisions(self.x + self.velocityX, self.y + self.velocityY)
+function Bullet:destroy()
+    if self.destroyTimer then
+        self.destroyTimer:remove()
+        self.destroyTimer = nil
+    end
+    self:remove()
+end
 
-    for _, collision in pairs(collisions) do
-        local other = collision.other
+function Bullet:update()
+    local _, _, collisions, length = self:moveWithCollisions(self.x + self.velocityX, self.y + self.velocityY)
 
-        if other.onBulletCollision then
-            other:onBulletColliision()
+    if length > 0 then
+        local other = collisions[1].other
+        if other:getTag() == TAGS.Player then
+            other:die()
+        elseif other.onBulletCollision then
+            other:onBulletCollision(self)
         end
-
         self:destroy()
-
     end
 end
