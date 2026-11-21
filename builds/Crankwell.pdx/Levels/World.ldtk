@@ -15918,39 +15918,23 @@
 							"__worldY": 968
 						},
 						{
-							"__identifier": "ProjectileShooter",
-							"__grid": [30,6],
+							"__identifier": "PatrolEnemy",
+							"__grid": [13,10],
 							"__pivot": [0,0],
-							"__tags": ["Hazzard"],
+							"__tags": ["Enemy"],
 							"__tile": null,
-							"__smartColor": "#124E89",
-							"iid": "f5f830b0-e4f0-11f1-af26-9779f5a230f5",
-							"width": 20,
-							"height": 40,
-							"defUid": 164,
-							"px": [600,120],
-							"fieldInstances": [
-								{ "__identifier": "direction", "__type": "LocalEnum.ProjectileShooters", "__value": "Left", "__tile": null, "defUid": 166, "realEditorValues": [] },
-								{ "__identifier": "fireInterval", "__type": "Int", "__value": 5, "__tile": null, "defUid": 167, "realEditorValues": [] },
-								{ "__identifier": "bulletSpeed", "__type": "Float", "__value": 3, "__tile": null, "defUid": 168, "realEditorValues": [] }
-							],
-							"__worldX": 4168,
-							"__worldY": 888
-						},
-						{
-							"__identifier": "FireTrap",
-							"__grid": [15,10],
-							"__pivot": [0,0],
-							"__tags": ["Hazzard"],
-							"__tile": null,
-							"__smartColor": "#F77622",
-							"iid": "9f1194f0-e4f0-11f1-af26-6fb891f8fd70",
+							"__smartColor": "#FF0044",
+							"iid": "459f9000-e4f0-11f1-af26-43d10d651d5b",
 							"width": 20,
 							"height": 20,
-							"defUid": 169,
-							"px": [300,200],
-							"fieldInstances": [],
-							"__worldX": 3868,
+							"defUid": 43,
+							"px": [260,200],
+							"fieldInstances": [
+								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 44, "realEditorValues": [] },
+								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
+								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] }
+							],
+							"__worldX": 3828,
 							"__worldY": 968
 						}
 					]
