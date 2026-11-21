@@ -31,16 +31,16 @@ local ENEMY_ENTITIES <const> = {
     SpikeBall_FixedDistance = true,
 }
 
+-- Path is CASE-SENSITIVE on the device (Windows hides this): must match the folder/file exactly.
+-- Simulator: parse the .ldtk JSON and export precomputed Lua levels.
+-- Device: load the precomputed Lua levels (parsing the JSON there is slow and memory-hungry).
 local usePrecomputedLevels = not playdate.isSimulator
 
-ldtk.load("levels/world.ldtk", usePrecomputedLevels)
+ldtk.load("Levels/World.ldtk", usePrecomputedLevels)
 
 if playdate.isSimulator then
     ldtk.export_to_lua_files()
 end
-
-
-ldtk.load("Levels/World.ldtk", false)
 
 -- Wrappers look up the class globals at call time, so load order doesn't matter
 local entitySpawners <const> = {
