@@ -13,6 +13,8 @@ local function smoothstep(t)
     return t * t * (3 - 2 * t)
 end
 local PEEK <const> = 20
+local SOFT_ZONE <const> = 24        -- px the player can walk either side of the focus before the camera scrolls
+local SNAP_DISTANCE <const> = 100   -- a jump bigger than this in one frame (respawn/teleport) re-centres instantly
 
 
 local FADE_FRAMES <const> = 8   -- frames to fade out (and again to fade in)
@@ -124,7 +126,17 @@ function Camera:update()
             self:finishTransition()
         end
     else
-        self.x, self.y = followTarget(scene.level_name, scene.levelRect, scene.player.x, scene.player.y)
+        local px = scene.player.x
+        local fx = self.focusX
+        if not fx or math.abs(px - fx) > SNAP_DISTANCE then
+            fx = px
+        elseif px > fx + SOFT_ZONE then
+            fx = px - SOFT_ZONE
+        elseif px < fx - SOFT_ZONE then
+            fx = px + SOFT_ZONE
+        end
+        self.focusX = fx
+        self.x, self.y = followTarget(scene.level_name, scene.levelRect, fx, scene.player.y)
     end
 
     local shakeX, shakeY = 0, 0
@@ -212,6 +224,7 @@ function Camera:finishTransition()
     scene.player:setUpdatesEnabled(true)
 
     self.x, self.y = t.toX, t.toY
+    self.focusX = scene.player.x   -- matches the centred position followTarget used for toX
 end
 
 return Camera
