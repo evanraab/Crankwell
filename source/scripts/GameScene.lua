@@ -60,6 +60,7 @@ local entitySpawners <const> = {
     Breakable = function(x, y, e) BreakableBlock(x, y, e) end,
     MovingPlatform = function(x, y, e) MovingPlatform(x, y, e) end,
     TriggeredPlatform = function(x, y, e) TriggeredPlatform(x, y, e) end,
+    TimedPlatform = function(x, y, e) TimedPlatform(x, y, e) end,
     ProjectileShooter = function(x, y, e) ProjectileShooter(x, y, e) end,
     FireTrap = function(x, y, e) FireTrap(x, y, e) end,
 }
@@ -276,6 +277,7 @@ function GameScene:resetPlayer()
     local x, y = self:getRespawnPoint()
     self:setActiveLevel(self.level_name, true)  -- make sure neighbours are loaded
     TriggeredPlatform.resetAll()
+    TimedPlatform.resetAll()
     self.player:moveTo(x, y)
 end
 
