@@ -1,0 +1,29 @@
+{
+	// Type "class" in an empty .lua file and press Tab/Enter.
+	// The class name comes from the file name with its first letter capitalised
+	// (movingPlatform.lua -> MovingPlatform). Tab moves through the parent class, then init's body.
+	"Playdate class": {
+		"scope": "lua",
+		"prefix": "class",
+		"description": "Playdate class with init and update, named after the file",
+		"body": [
+			"local pd <const> = playdate",
+			"local gfx <const> = pd.graphics",
+			"",
+			"--- @class ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/} : ${1:playdate.graphics.sprite}",
+			"--- @overload fun(...): ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}",
+			"${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/} = {}",
+			"class(\"${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}\").extends(${1/^playdate\\.graphics\\./gfx./})",
+			"",
+			"function ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}:init(x, y, entity)",
+			"\t${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}.super.init(self)",
+			"\t$0",
+			"end",
+			"",
+			"function ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}:update()",
+			"\t${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}.super.update(self)",
+			"end",
+			""
+		]
+	}
+}
