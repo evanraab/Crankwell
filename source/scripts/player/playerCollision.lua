@@ -74,6 +74,8 @@ function PlayerCollision:moveAndCollide()
         elseif other:isa(Switch) and collision.normal.y == -1 then
             other:onJumpedOn(player)
             self:bouncePlayer()
+        elseif other:isa(BouncePlatform) and collision.normal.y == -1 then
+            self:bouncePlayer(other:onBounced())
         elseif other:getTag() == TAGS.Hazzard then
             died = true
         elseif other:getTag() == TAGS.Pickup then
