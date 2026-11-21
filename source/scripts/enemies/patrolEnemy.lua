@@ -6,7 +6,6 @@ PatrolEnemy = {}
 class("PatrolEnemy").extends(Enemy)
 
 PatrolEnemy.PATROL_ENEMY_SHEET = "images/enemies/enemy-table-16-16"
-local TILE_SIZE <const> = 20
 
 PatrolEnemy.DEBUG = false
 local debugProbes = {}
@@ -15,7 +14,7 @@ function PatrolEnemy:init(x, y, entity, sheetPath)
     PatrolEnemy.super.init(self, x, y, entity, sheetPath)
     -- the LDtk maxDistance field is in tiles; distanceTraveled is tracked in pixels
     if self.maxDistance then
-        self.maxDistance *= TILE_SIZE
+        self.maxDistance *= Enemy.TILE_SIZE
     end
 end
 

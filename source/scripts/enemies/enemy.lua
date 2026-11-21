@@ -10,6 +10,7 @@ class("Enemy").extends(AnimatedSprite)
 Enemy.DEFAULT_SHEET = "images/enemies/enemy-table-32-32"
 Enemy.STUN_FRAMES = 45  -- ~1.5s at Playdate's default 30 fps
 Enemy.ART_FACING = 1   -- 1 = art faces right, -1 = art faces left
+Enemy.TILE_SIZE = 20
 -- x, y, w, h relative to the sprite's top-left; subclasses with different art override this
 Enemy.COLLIDE_RECT = { 6, 12, 20, 18 }
 Enemy.DEATH_FX = DeathParticles.ENEMY  -- particle style for the death burst; subclasses can override
