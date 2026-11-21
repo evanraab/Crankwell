@@ -103,10 +103,16 @@ function MovingPlatform:update()
         self.pauseTimer = self.pauseFrames
     end
 
+    self:moveAlongPath(riders)
+end
+
+-- Moves to the point `self.progress` px along the path, carrying `riders` and shoving anything we run into.
+function MovingPlatform:moveAlongPath(riders)
     local t = self.progress / self.pathLength
     local newX = self.startX + (self.endX - self.startX) * t
     local newY = self.startY + (self.endY - self.startY) * t
     local dx, dy = newX - self.x, newY - self.y
+    if dx == 0 and dy == 0 then return end
 
     -- Move with our own collisions off so riders aren't blocked by us while being carried
     -- or shoved; walls still stop them.

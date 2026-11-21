@@ -28,6 +28,7 @@ import "scripts/enemies/flyingEnemy"
 
 import "scripts/environment/breakableBlock"
 import "scripts/environment/movingPlatform"
+import "scripts/environment/triggeredPlatform"
 import "scripts/environment/doors/door"
 import "scripts/environment/doors/keyDoor"
 import "scripts/environment/doors/switchDoor"
