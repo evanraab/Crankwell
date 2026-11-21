@@ -28,7 +28,18 @@ function ProjectileShooter:init(x, y, entity)
     self.bulletSpeed = fields.bulletSpeed or DEFAULT_BULLET_SPEED
 
     self:setZIndex(Z_INDEXES.Hazzard)
-    self:setImage(fireballShooterImage)
+    if fields.hidden then
+        -- No art (e.g. fire coming out of the ground): keep the LDtk entity's size so the
+        -- bullet spawn point and on-screen check still work, but draw nothing
+        local w, h = fireballShooterImage:getSize()
+        if entity and entity.size then
+            w, h = entity.size.width, entity.size.height
+        end
+        self:setSize(w, h)
+        self:setVisible(false)
+    else
+        self:setImage(fireballShooterImage)
+    end
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:add()

@@ -19,6 +19,7 @@ import "scripts/spikeBall"
 import "scripts/spikeBall_FixedDistance"
 import "scripts/hazzards/bullet"
 import "scripts/hazzards/projectileShooter"
+import "scripts/hazzards/fireTrap"
 
 import "scripts/enemies/enemy"
 import "scripts/enemies/patrolEnemy"
