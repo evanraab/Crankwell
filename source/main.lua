@@ -41,6 +41,7 @@ import "scripts/inventory/inventory"
 import "scripts/inventory/collectible"
 import "scripts/player/ability"
 import "scripts/inventory/key"
+import "scripts/chests/chest"
 
 import "scripts/stateMachine/stateMachine"
 

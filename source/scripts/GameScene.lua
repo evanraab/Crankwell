@@ -14,6 +14,7 @@ TAGS = {
     Breakable = 5,
     Checkpoint = 6,
     Platform = 7,
+    Interactable = 8,
 }
 
 Z_INDEXES = {
@@ -65,6 +66,7 @@ local entitySpawners <const> = {
     BouncePlatform = function(x, y, e) BouncePlatform(x, y, e) end,
     ProjectileShooter = function(x, y, e) ProjectileShooter(x, y, e) end,
     FireTrap = function(x, y, e) FireTrap(x, y, e) end,
+    Chest = function(x, y, e) Chest(x, y, e) end,
 }
 
 ---@class GameScene

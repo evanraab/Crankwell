@@ -22,7 +22,8 @@ end
 function PlayerCollision:getResponse(other)
     local tag = other:getTag()
     if tag == TAGS.Hazzard or tag == TAGS.Enemy 
-    or tag == TAGS.Pickup or tag == TAGS.Checkpoint then
+    or tag == TAGS.Pickup or tag == TAGS.Checkpoint
+    or tag == TAGS.Interactable then
         return gfx.sprite.kCollisionTypeOverlap
     end
 
