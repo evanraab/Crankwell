@@ -1,9 +1,10 @@
 -- slam properties
-local SLAM_CRANK_THRESHOLD = 12 -- degrees per frame, backwards
-local SLAM_CRANK_THRESHOLD_WHILE_IN_OTHER_STATE = 20;
--- Slowing/stopping the crank often produces a brief backswing, so require the reverse to be
--- sustained and keep the stricter threshold for a short while after fluttering stops.
-local SLAM_REVERSE_FRAMES = 2
+-- A slam triggers when the crank's net backward rotation over the last few frames passes a
+-- total angle. Summing over a window tolerates frame-to-frame crank jitter and the slow first
+-- frame of a reversal, while the small backswing from stopping the crank never adds up to it.
+local SLAM_WINDOW_FRAMES = 3
+local SLAM_REVERSE_ANGLE = 40                -- degrees backwards within the window
+local SLAM_REVERSE_ANGLE_AFTER_FLUTTER = 50  -- stricter for a moment after fluttering stops
 local SLAM_FLUTTER_GRACE_FRAMES = 10
 local SLAM_SPEED = 16
 
@@ -29,7 +30,7 @@ function PlayerSlam:init(player)
     -- slam state: nil, "freeze" or "drop"
     self.slamPhase = nil
     self.slamFreezeTimer = 0
-    self.slamReverseFrames = 0
+    self.crankHistory = {}   -- last SLAM_WINDOW_FRAMES crank changes, oldest first
     self.slamFlutterGraceTimer = 0
     self.slamming = true
     self.powered = false
@@ -60,16 +61,27 @@ function PlayerSlam:updateSlam(player, flutter)
             self.slamFlutterGraceTimer -= 1
         end
 
-        local threshold = self.slamFlutterGraceTimer > 0 and SLAM_CRANK_THRESHOLD_WHILE_IN_OTHER_STATE or SLAM_CRANK_THRESHOLD
         local airborne = (not player.grounded) and (not player.touchingGround)
-        if airborne and IsCrankingBackFast(threshold) then
-            self.slamReverseFrames += 1
-        else
-            self.slamReverseFrames = 0
+        local history = self.crankHistory
+        if airborne then
+            history[#history + 1] = CrankChangeThisFrame()
+            if #history > SLAM_WINDOW_FRAMES then
+                table.remove(history, 1)
+            end
+        elseif #history > 0 then
+            self.crankHistory = {}
+            history = self.crankHistory
         end
 
-        if self.slamReverseFrames >= SLAM_REVERSE_FRAMES then
-            self.slamReverseFrames = 0
+        -- net rotation, so forward cranking inside the window cancels out backward cranking
+        local net = 0
+        for _, change in ipairs(history) do
+            net += change
+        end
+        local requiredAngle = self.slamFlutterGraceTimer > 0 and SLAM_REVERSE_ANGLE_AFTER_FLUTTER or SLAM_REVERSE_ANGLE
+
+        if airborne and -net >= requiredAngle then
+            self.crankHistory = {}
             self.slamPhase = "freeze"
             self.slamFreezeTimer = SLAM_FREEZE_FRAMES
             self.spinDir = (player.globalFlip == 1) and -1 or 1  -- lock direction for the whole spin

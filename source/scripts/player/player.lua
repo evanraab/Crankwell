@@ -56,9 +56,9 @@ function IsCrankingFast()
    return crankFastGrace > 0
 end
 
--- have a higher threshold for when the player is currently fluttering
-function IsCrankingBackFast(threshold)
-   return crankChangeThisFrame < -threshold
+-- degrees the crank moved this frame (negative = backwards), sampled once per frame
+function CrankChangeThisFrame()
+   return crankChangeThisFrame
 end
 
 function Player:init(x, y, gameManager)

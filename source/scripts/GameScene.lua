@@ -89,7 +89,7 @@ function GameScene:init()
 
     Checkpoint.onActivated = function(cp) self:setCheckpoint(cp) end
 
-    self.spawnLevel = "Level_12"
+    self.spawnLevel = "Level_10"
     gfx.setBackgroundColor(gfx.kColorBlack)
     gfx.clear()
     local spawnRect = ldtk.get_rect(self.spawnLevel)
