@@ -2779,13 +2779,13 @@
 			"exportToToc": false,
 			"allowOutOfBounds": false,
 			"doc": null,
-			"width": 16,
-			"height": 16,
+			"width": 20,
+			"height": 20,
 			"resizableX": true,
 			"resizableY": true,
-			"minWidth": 16,
+			"minWidth": 20,
 			"maxWidth": null,
-			"minHeight": 16,
+			"minHeight": 20,
 			"maxHeight": null,
 			"keepAspectRatio": false,
 			"tileOpacity": 1,
@@ -4426,8 +4426,8 @@
 							"__tile": null,
 							"__smartColor": "#FEAE34",
 							"iid": "c2a5edc0-bde0-11f1-a629-21effc013031",
-							"width": 16,
-							"height": 16,
+							"width": 20,
+							"height": 20,
 							"defUid": 129,
 							"px": [1456,96],
 							"fieldInstances": [],
@@ -4442,8 +4442,8 @@
 							"__tile": null,
 							"__smartColor": "#FEAE34",
 							"iid": "c68af020-bde0-11f1-a629-a3fda7a6f37b",
-							"width": 16,
-							"height": 16,
+							"width": 20,
+							"height": 20,
 							"defUid": 129,
 							"px": [1920,48],
 							"fieldInstances": [],
@@ -7134,8 +7134,8 @@
 							"__tile": null,
 							"__smartColor": "#FEAE34",
 							"iid": "e67b3520-bde0-11f1-a629-d7a00d4b7b4d",
-							"width": 16,
-							"height": 16,
+							"width": 20,
+							"height": 20,
 							"defUid": 129,
 							"px": [608,144],
 							"fieldInstances": [],
@@ -10083,8 +10083,8 @@
 							"__tile": null,
 							"__smartColor": "#FEAE34",
 							"iid": "cf4ac160-bde0-11f1-a629-7979e59086aa",
-							"width": 16,
-							"height": 16,
+							"width": 20,
+							"height": 20,
 							"defUid": 129,
 							"px": [16,80],
 							"fieldInstances": [],
@@ -16637,22 +16637,6 @@
 							"__worldY": 908
 						},
 						{
-							"__identifier": "Checkpoint",
-							"__grid": [75,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#FEAE34",
-							"iid": "2fc82c50-e4f0-11f1-af1f-b5dcf72768c7",
-							"width": 16,
-							"height": 16,
-							"defUid": 129,
-							"px": [1500,60],
-							"fieldInstances": [],
-							"__worldX": 5068,
-							"__worldY": 828
-						},
-						{
 							"__identifier": "PatrolEnemy",
 							"__grid": [81,6],
 							"__pivot": [0,0],
@@ -16683,8 +16667,8 @@
 							"__tile": null,
 							"__smartColor": "#FEAE34",
 							"iid": "465f4110-e4f0-11f1-af1f-afc8000bffec",
-							"width": 16,
-							"height": 16,
+							"width": 20,
+							"height": 20,
 							"defUid": 129,
 							"px": [1980,40],
 							"fieldInstances": [],
@@ -20267,6 +20251,22 @@
 							"fieldInstances": [],
 							"__worldX": 7368,
 							"__worldY": 988
+						},
+						{
+							"__identifier": "PlayerStart",
+							"__grid": [1,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FEE761",
+							"iid": "74eecb90-e4f0-11f1-944c-2f75e61ec12b",
+							"width": 20,
+							"height": 20,
+							"defUid": 130,
+							"px": [20,100],
+							"fieldInstances": [],
+							"__worldX": 7028,
+							"__worldY": 868
 						}
 					]
 				},
@@ -20761,7 +20761,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-						0,1,1,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1
+						0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1
 					],
 					"autoLayerTiles": [
 						{ "px": [260,200], "src": [40,40], "f": 0, "t": 14, "d": [153,213], "a": 1 },
@@ -20788,12 +20788,14 @@
 						{ "px": [280,180], "src": [20,0], "f": 0, "t": 1, "d": [149,194], "a": 1 },
 						{ "px": [240,200], "src": [20,0], "f": 0, "t": 1, "d": [149,212], "a": 1 },
 						{ "px": [0,220], "src": [20,0], "f": 0, "t": 1, "d": [149,220], "a": 1 },
+						{ "px": [20,220], "src": [20,0], "f": 0, "t": 1, "d": [149,221], "a": 1 },
+						{ "px": [40,220], "src": [20,0], "f": 0, "t": 1, "d": [149,222], "a": 1 },
 						{ "px": [180,220], "src": [20,0], "f": 0, "t": 1, "d": [149,229], "a": 1 },
 						{ "px": [200,220], "src": [20,0], "f": 0, "t": 1, "d": [149,230], "a": 1 },
 						{ "px": [380,120], "src": [0,80], "f": 0, "t": 24, "d": [148,139], "a": 1 },
 						{ "px": [0,100], "src": [80,80], "f": 0, "t": 28, "d": [147,100], "a": 1 },
 						{ "px": [300,180], "src": [80,0], "f": 0, "t": 4, "d": [146,195], "a": 1 },
-						{ "px": [20,220], "src": [80,0], "f": 0, "t": 4, "d": [146,221], "a": 1 },
+						{ "px": [60,220], "src": [80,0], "f": 0, "t": 4, "d": [146,223], "a": 1 },
 						{ "px": [260,180], "src": [0,0], "f": 0, "t": 0, "d": [145,193], "a": 1 },
 						{ "px": [380,180], "src": [0,0], "f": 0, "t": 0, "d": [145,199], "a": 1 },
 						{ "px": [220,200], "src": [0,0], "f": 0, "t": 0, "d": [145,211], "a": 1 },
@@ -20828,44 +20830,6 @@
 					"overrideTilesetUid": null,
 					"gridTiles": [],
 					"entityInstances": [
-						{
-							"__identifier": "SwitchDoor",
-							"__grid": [19,7],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": { "tilesetUid": 189, "x": 0, "y": 0, "w": 10, "h": 10 },
-							"__smartColor": "#E4A672",
-							"iid": "ef69f930-e4f0-11f1-944c-0122e257e2da",
-							"width": 20,
-							"height": 20,
-							"defUid": 82,
-							"px": [380,140],
-							"fieldInstances": [
-								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 83, "realEditorValues": [] },
-								{ "__identifier": "switchId", "__type": "LocalEnum.Switches", "__value": "DoorSwitch", "__tile": null, "defUid": 86, "realEditorValues": [] }
-							],
-							"__worldX": 6588,
-							"__worldY": 908
-						},
-						{
-							"__identifier": "SwitchDoor",
-							"__grid": [19,8],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": { "tilesetUid": 189, "x": 0, "y": 0, "w": 10, "h": 10 },
-							"__smartColor": "#E4A672",
-							"iid": "efa55480-e4f0-11f1-944c-d75100ba44ef",
-							"width": 20,
-							"height": 20,
-							"defUid": 82,
-							"px": [380,160],
-							"fieldInstances": [
-								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 83, "realEditorValues": [] },
-								{ "__identifier": "switchId", "__type": "LocalEnum.Switches", "__value": "DoorSwitch", "__tile": null, "defUid": 86, "realEditorValues": [] }
-							],
-							"__worldX": 6588,
-							"__worldY": 928
-						},
 						{
 							"__identifier": "Breakable",
 							"__grid": [16,9],
@@ -20913,6 +20877,25 @@
 							"fieldInstances": [],
 							"__worldX": 6568,
 							"__worldY": 948
+						},
+						{
+							"__identifier": "KeyDoor",
+							"__grid": [19,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 1, "x": 112, "y": 0, "w": 16, "h": 32 },
+							"__smartColor": "#E4A672",
+							"iid": "13264b40-e4f0-11f1-944c-193ae2508926",
+							"width": 20,
+							"height": 40,
+							"defUid": 79,
+							"px": [380,140],
+							"fieldInstances": [
+								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "Keys", "__type": "LocalEnum.Keys", "__value": "DoorKey", "__tile": null, "defUid": 81, "realEditorValues": [] }
+							],
+							"__worldX": 6588,
+							"__worldY": 908
 						}
 					]
 				},
@@ -21351,7 +21334,10 @@
 			"__smartColor": "#ADADB5",
 			"__bgPos": null,
 			"externalRelPath": null,
-			"fieldInstances": [{ "__identifier": "CameraPeek", "__type": "LocalEnum.CameraPeek", "__value": "None", "__tile": null, "defUid": 123, "realEditorValues": [] }],
+			"fieldInstances": [{ "__identifier": "CameraPeek", "__type": "LocalEnum.CameraPeek", "__value": "Up", "__tile": null, "defUid": 123, "realEditorValues": [{
+				"id": "V_String",
+				"params": ["Up"]
+			}] }],
 			"layerInstances": [
 				{
 					"__identifier": "Walls_2",
@@ -21372,7 +21358,7 @@
 					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
-						1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,1,
 						0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,
 						0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -21382,6 +21368,7 @@
 					],
 					"autoLayerTiles": [
 						{ "px": [0,0], "src": [40,40], "f": 0, "t": 14, "d": [153,0], "a": 1 },
+						{ "px": [0,20], "src": [40,40], "f": 0, "t": 14, "d": [153,20], "a": 1 },
 						{ "px": [0,220], "src": [40,40], "f": 0, "t": 14, "d": [153,220], "a": 1 },
 						{ "px": [380,220], "src": [40,40], "f": 0, "t": 14, "d": [153,239], "a": 1 },
 						{ "px": [380,0], "src": [0,40], "f": 0, "t": 12, "d": [152,19], "a": 1 },
@@ -21395,9 +21382,8 @@
 						{ "px": [380,160], "src": [0,40], "f": 0, "t": 12, "d": [152,179], "a": 1 },
 						{ "px": [380,180], "src": [0,40], "f": 0, "t": 12, "d": [152,199], "a": 1 },
 						{ "px": [380,200], "src": [0,40], "f": 0, "t": 12, "d": [152,219], "a": 1 },
-						{ "px": [20,0], "src": [40,80], "f": 0, "t": 26, "d": [151,1], "a": 1 },
-						{ "px": [40,0], "src": [40,80], "f": 0, "t": 26, "d": [151,2], "a": 1 },
-						{ "px": [0,20], "src": [80,40], "f": 0, "t": 16, "d": [150,20], "a": 1 },
+						{ "px": [20,20], "src": [40,80], "f": 0, "t": 26, "d": [151,21], "a": 1 },
+						{ "px": [20,0], "src": [80,40], "f": 0, "t": 16, "d": [150,1], "a": 1 },
 						{ "px": [0,40], "src": [80,40], "f": 0, "t": 16, "d": [150,40], "a": 1 },
 						{ "px": [0,60], "src": [80,40], "f": 0, "t": 16, "d": [150,60], "a": 1 },
 						{ "px": [0,80], "src": [80,40], "f": 0, "t": 16, "d": [150,80], "a": 1 },
@@ -21425,11 +21411,14 @@
 						{ "px": [320,220], "src": [20,0], "f": 0, "t": 1, "d": [149,236], "a": 1 },
 						{ "px": [340,220], "src": [20,0], "f": 0, "t": 1, "d": [149,237], "a": 1 },
 						{ "px": [360,220], "src": [20,0], "f": 0, "t": 1, "d": [149,238], "a": 1 },
-						{ "px": [60,0], "src": [80,80], "f": 0, "t": 28, "d": [147,3], "a": 1 },
+						{ "px": [40,20], "src": [20,100], "f": 0, "t": 31, "d": [141,22], "a": 1 },
+						{ "px": [60,20], "src": [20,100], "f": 0, "t": 31, "d": [141,23], "a": 1 },
+						{ "px": [80,20], "src": [20,100], "f": 0, "t": 31, "d": [141,24], "a": 1 },
 						{ "px": [140,60], "src": [20,100], "f": 0, "t": 31, "d": [141,67], "a": 1 },
 						{ "px": [160,60], "src": [20,100], "f": 0, "t": 31, "d": [141,68], "a": 1 },
 						{ "px": [220,100], "src": [20,100], "f": 0, "t": 31, "d": [141,111], "a": 1 },
 						{ "px": [280,140], "src": [20,100], "f": 0, "t": 31, "d": [141,154], "a": 1 },
+						{ "px": [100,20], "src": [80,100], "f": 0, "t": 34, "d": [140,25], "a": 1 },
 						{ "px": [180,60], "src": [80,100], "f": 0, "t": 34, "d": [140,69], "a": 1 },
 						{ "px": [240,100], "src": [80,100], "f": 0, "t": 34, "d": [140,112], "a": 1 },
 						{ "px": [300,140], "src": [80,100], "f": 0, "t": 34, "d": [140,155], "a": 1 },
@@ -21579,6 +21568,44 @@
 							],
 							"__worldX": 6328,
 							"__worldY": 1208
+						},
+						{
+							"__identifier": "SwitchDoor",
+							"__grid": [3,0],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 189, "x": 0, "y": 0, "w": 10, "h": 10 },
+							"__smartColor": "#E4A672",
+							"iid": "0e4312c0-e4f0-11f1-944c-659d10b29677",
+							"width": 20,
+							"height": 20,
+							"defUid": 82,
+							"px": [60,0],
+							"fieldInstances": [
+								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 83, "realEditorValues": [] },
+								{ "__identifier": "switchId", "__type": "LocalEnum.Switches", "__value": "DoorSwitch", "__tile": null, "defUid": 86, "realEditorValues": [] }
+							],
+							"__worldX": 6268,
+							"__worldY": 1008
+						},
+						{
+							"__identifier": "SwitchDoor",
+							"__grid": [2,0],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 189, "x": 0, "y": 0, "w": 10, "h": 10 },
+							"__smartColor": "#E4A672",
+							"iid": "0e79da30-e4f0-11f1-944c-493a9a7f5d90",
+							"width": 20,
+							"height": 20,
+							"defUid": 82,
+							"px": [40,0],
+							"fieldInstances": [
+								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 83, "realEditorValues": [] },
+								{ "__identifier": "switchId", "__type": "LocalEnum.Switches", "__value": "DoorSwitch", "__tile": null, "defUid": 86, "realEditorValues": [] }
+							],
+							"__worldX": 6248,
+							"__worldY": 1008
 						}
 					]
 				},
@@ -22879,52 +22906,6 @@
 							],
 							"__worldX": 7408,
 							"__worldY": 1188
-						},
-						{
-							"__identifier": "ArmoredEnemy",
-							"__grid": [23,7],
-							"__pivot": [0,0],
-							"__tags": ["Enemy"],
-							"__tile": null,
-							"__smartColor": "#A22633",
-							"iid": "86fdee90-e4f0-11f1-944c-c9da5893a05d",
-							"width": 20,
-							"height": 20,
-							"defUid": 94,
-							"px": [460,140],
-							"fieldInstances": [
-								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 95, "realEditorValues": [] },
-								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 96, "realEditorValues": [] },
-								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] }
-							],
-							"__worldX": 7468,
-							"__worldY": 1148
-						},
-						{
-							"__identifier": "PatrolEnemy",
-							"__grid": [34,4],
-							"__pivot": [0,0],
-							"__tags": ["Enemy"],
-							"__tile": null,
-							"__smartColor": "#FF0044",
-							"iid": "938924e0-e4f0-11f1-944c-6dba95e049c9",
-							"width": 20,
-							"height": 20,
-							"defUid": 43,
-							"px": [680,80],
-							"fieldInstances": [
-								{ "__identifier": "xVelocity", "__type": "Float", "__value": 1, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Float", "params": [1] }] },
-								{ "__identifier": "maxDistance", "__type": "Float", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "isLedgeEnemy", "__type": "Bool", "__value": true, "__tile": null, "defUid": 107, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] }
-							],
-							"__worldX": 7688,
-							"__worldY": 1088
 						}
 					]
 				},
