@@ -166,8 +166,6 @@ function GameScene:loadLevel(level_name)
     end
 
     self:addTileLayers(level_name, rect.x, rect.y)
-
-    self:addTileLayers(level_name, rect.x, rect.y)
     self:spawnEntities(level_name, rect, false)   -- non-enemies
 
     local sprites = {}

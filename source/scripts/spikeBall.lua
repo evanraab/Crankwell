@@ -15,7 +15,7 @@ function Spikeball:init(x, y, entity)
     self:add()
 
     self:setTag(TAGS.Hazzard)
-    self:setCollideRect(8, 8, 32, 32)
+    self:setCollideRect(0, 0, self:getSize()) -- matches the image (18x18)
 
     local fields = entity.fields
     self.xVelocity = fields.xVelocity
@@ -29,7 +29,27 @@ function Spikeball:collisionResponse(other)
     return gfx.sprite.kCollisionTypeBounce
 end
 
+-- True if the ball's collide rect already sits inside something solid (e.g. placed into a wall in LDtk).
+function Spikeball:isEmbedded()
+    for _, other in ipairs(self:overlappingSprites()) do
+        if other:getTag() ~= TAGS.Player and self:collisionResponse(other) == gfx.sprite.kCollisionTypeBounce then
+            return true
+        end
+    end
+    return false
+end
+
 function Spikeball:update()
+    -- moveWithCollisions with a bounce response can loop forever when the sprite starts
+    -- inside a wall, freezing the game. Stay put instead and say where the bad placement is.
+    if self:isEmbedded() then
+        if not self.warnedEmbedded then
+            self.warnedEmbedded = true
+            print(("Spikeball at (%d, %d) is stuck inside a wall; move it in LDtk"):format(self.x, self.y))
+        end
+        return
+    end
+
     local _, _, collisions, length = self:moveWithCollisions(self.x + self.xVelocity, self.y + self.yVelocity)
     local hitWall = false
     for i = 1, length do

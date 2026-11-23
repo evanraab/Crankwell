@@ -11410,7 +11410,7 @@
 							"px": [672,176],
 							"fieldInstances": [
 								{ "__identifier": "xVelocity", "__type": "Float", "__value": 0, "__tile": null, "defUid": 29, "realEditorValues": [] },
-								{ "__identifier": "yVelocity", "__type": "Float", "__value": 2, "__tile": null, "defUid": 30, "realEditorValues": [{ "id": "V_Float", "params": [2] }] }
+								{ "__identifier": "yVelocity", "__type": "Float", "__value": 1, "__tile": null, "defUid": 30, "realEditorValues": [{ "id": "V_Float", "params": [1] }] }
 							],
 							"__worldX": 7872,
 							"__worldY": 416
