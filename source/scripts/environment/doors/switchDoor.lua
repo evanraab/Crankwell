@@ -5,9 +5,15 @@ local gfx <const> = playdate.graphics
 SwitchDoor = {}
 class('SwitchDoor').extends(Door)
 
+local switchDoorImage <const> = gfx.image.new("images/doors/switch-door")
+assert(switchDoorImage, "missing images/doors/switch-door.png")
+
 function SwitchDoor:init(x, y, entity)
     self.switchId = entity.fields.switchId
-    SwitchDoor.super.init(self, x, y, entity)
+    -- the PNG is 10x10; scale it up to fill the LDtk entity (20x20)
+    local imgW = switchDoorImage:getSize()
+    local image = switchDoorImage:scaledImage(entity.size.width / imgW)
+    SwitchDoor.super.init(self, x, y, entity, image)
 end
 
 --- called by a switch after player hits it
