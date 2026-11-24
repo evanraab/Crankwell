@@ -14,7 +14,15 @@ function Switch:init(x, y, entity)
     end
     local image = LDtk.generate_image_from_entity(entity)
     assert(image, "door entity has no tile image")
-   
+
+    -- LDtk's "Stretch" tile render mode is editor-only; the importer returns the
+    -- raw tileset rect (16x16), so scale it to the entity's size (20x20) here.
+    local imgW, imgH = image:getSize()
+    local w, h = entity.size.width, entity.size.height
+    if imgW ~= w or imgH ~= h then
+        image = image:scaledImage(w / imgW, h / imgH)
+    end
+
     self:setImage(image)
     self:setCenter(0, 0)
     self:moveTo(x, y)
