@@ -1,8 +1,8 @@
 import "scripts/boss/bossHealth"
 import "scripts/stateMachine/stateMachine"
 
-local HIT_POINTS <const> = 3        -- default; override with an LDtk "hitPoints" field
-local HURT_FRAMES <const> = 45      -- stun + blink time after each hit
+local HIT_POINTS <const> = 15        -- default; override with an LDtk "hitPoints" field
+local RECOVER_FRAMES <const> = 45    -- blink time after each hit
 local DEATH_FRAMES <const> = 40     -- time spent flashing before removal
 local SPEED_PER_HIT <const> = 0.75  -- boss walks faster after each hit
 local BLINK_INTERVAL <const> = 3
@@ -24,10 +24,16 @@ function PatrolState:update(boss)
     boss:updatePatrol()
 end
 
-local HurtState = {}
+-- Brief blink after losing a hit point, then back to patrol
+local RecoverState = {}
 
-function HurtState:enter(boss)
+function RecoverState:enter(boss)
+    if boss.xVelocity ~= 0 then
+        boss.savedXVelocity = boss.xVelocity
+    end
     boss.xVelocity = 0
+    boss.canHurtPlayer = false
+    boss:changeState("hurt") -- animation state
 
     -- boss.facing = boss.xVelocity < 0 and -1 or 1
     -- boss.walkSpeed = boss.baseSpeed + (boss.health.max - boss.health.current) * SPEED_PER_HIT
@@ -36,13 +42,22 @@ function HurtState:enter(boss)
     boss:setCollisionsEnabled(false)
 end
 
-function HurtState:update(boss)
+function RecoverState:update(boss)
     boss:updateAnimation()
     boss:setVisible(math.floor(boss.health.invulnerableTimer / BLINK_INTERVAL) % 2 == 0)
 
     if not boss.health:isInvulnerable() then
         boss.fsm:change("patrol")
+        -- resume the way it was walking before the hit
+        local dir = (boss.savedXVelocity or 1) < 0 and -1 or 1
+        boss.xVelocity = dir * boss.walkSpeed
     end
+end
+
+function RecoverState:exit(boss)
+    boss:setVisible(true)
+    boss.canHurtPlayer = true
+    boss:changeState("patrol")
 end
 
 local DyingState = {}
@@ -90,13 +105,13 @@ function Boss:init(x, y, entity, sheetPath)
     self.jumpProtected = true
     self.jumpProtectionTimer = 0
 
-    self.health = BossHealth(fields.hitPoints or HIT_POINTS, HURT_FRAMES)
-    self.health.onDamaged = function() self.fsm:change("hurt") end
+    self.health = BossHealth(fields.hitPoints or HIT_POINTS, RECOVER_FRAMES)
+    self.health.onDamaged = function() self.fsm:change("recover") end
     self.health.onDeath = function() self.fsm:change("dying") end
 
     self.fsm = StateMachine(self)
     self.fsm:add("patrol", PatrolState)
-    self.fsm:add("hurt", HurtState)
+    self.fsm:add("recover", RecoverState)
     self.fsm:add("dying", DyingState)
     self.fsm:change("patrol")
 end
@@ -144,7 +159,7 @@ function Boss:patrol(prevX, prevY)
     local x, y = self:getPosition()
     local dx, dy = x - prevX, y - prevY
 
-    if self.patrolAxis == "x" then
+    if self.patrolAxis == "x" then 
         self.distanceTraveled += math.abs(dx)
     elseif self.patrolAxis == "y" then
         self.distanceTraveled += math.abs(dy)
@@ -167,6 +182,7 @@ end
 function Boss:setupAnimations()
     self:addState("patrol", 1, 4, {tickStep = 4})
     self:addState("hurt", 5, 5)
+    self:addState("vulnerable", 11, 11)
 end
 
 function Boss:removeJumpProtectionAnimation()

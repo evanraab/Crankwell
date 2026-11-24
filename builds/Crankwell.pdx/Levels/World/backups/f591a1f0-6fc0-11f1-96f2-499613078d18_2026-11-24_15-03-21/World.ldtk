@@ -11,7 +11,7 @@
 	"iid": "f591a1f0-6fc0-11f1-96f2-499613078d18",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 202,
+	"nextUid": 203,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -4283,7 +4283,7 @@
 							"height": 40,
 							"defUid": 106,
 							"px": [180,180],
-							"fieldInstances": [{ "__identifier": "xVelocity", "__type": "Float", "__value": 2, "__tile": null, "defUid": 126, "realEditorValues": [{ "id": "V_Float", "params": [2] }] }],
+							"fieldInstances": [{ "__identifier": "xVelocity", "__type": "Float", "__value": 4, "__tile": null, "defUid": 126, "realEditorValues": [{ "id": "V_Float", "params": [4] }] }],
 							"__worldX": 8388,
 							"__worldY": 1428
 						},
@@ -6550,7 +6550,7 @@
 						},
 						{
 							"__identifier": "BouncePlatform",
-							"__grid": [16,8],
+							"__grid": [15,6],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -6559,13 +6559,13 @@
 							"width": 40,
 							"height": 20,
 							"defUid": 186,
-							"px": [320,160],
+							"px": [300,120],
 							"fieldInstances": [
 								{ "__identifier": "bounceVelocity", "__type": "Float", "__value": 8, "__tile": null, "defUid": 187, "realEditorValues": [] },
 								{ "__identifier": "respawnTime", "__type": "Int", "__value": 40, "__tile": null, "defUid": 188, "realEditorValues": [] }
 							],
-							"__worldX": 3980,
-							"__worldY": 1660
+							"__worldX": 3960,
+							"__worldY": 1620
 						}
 					]
 				}

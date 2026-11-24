@@ -16,23 +16,32 @@ local TURN_PAUSE_FRAMES <const> = 10    -- short beat after flipping before it w
 local CRASH_SHAKE_MAGNITUDE <const> = 6
 local CRASH_SHAKE_FRAMES <const> = 15
 local SHEET <const> = "images/bosses/test/mm_wheelie/big-helmet-table-64-64"
-local VULNERABLE_FRAMES <const> = 120  -- how long the boss stays stunned after a slam
+local HURT_FRAMES <const> = 120  -- how long the boss stays stunned after a slam
+local VULNERABLE_FRAMES <const> = 120  -- window to jump/slam for damage after the second slam
 local FLICKER_FRAMES <const> = 40      -- warning flicker at the end of the window
 local FLICKER_INTERVAL <const> = 3
 local SLAM_HITSTOP_FRAMES <const> = 6  -- quick freeze when a slam lands
 local HIT_COOLDOWN <const> = 12        -- min frames between hit points lost while vulnerable
+local HIT_FLASH_FRAMES <const> = 8     -- inverted flash on each hit
+local HIT_FLASH_INTERVAL <const> = 2
 local ChargeState = {}
 local CrashState = {}
+local HurtState = {}
 local VulnerableState = {}
 
 function BigHelmet:init(x, y, entity)
+    -- LDtk's entity box is smaller than the 64px sprite; line up the bottoms
+    -- so the boss spawns standing on the floor instead of sunk into it
+    y = y + (entity.size and entity.size.height or SIZE) - SIZE
     BigHelmet.super.init(self, x, y, entity, SHEET)
     self:setCollideRect(8, 16, 48, 48) -- offset the hit box for player to hit more easily
     self.fsm:add("charge", ChargeState) -- attack states that only this boss has
     self.fsm:add("crash", CrashState)
+    self.fsm:add("hurt", HurtState)
     self.fsm:add("vulnerable", VulnerableState)
 
-    -- hits taken while vulnerable keep the boss in that state instead of the generic hurt state
+    -- hits while vulnerable keep it vulnerable (short cooldown between hits)
+    -- instead of sending it to the base recover state
     local defaultOnDamaged = self.health.onDamaged
     self.health.onDamaged = function(current, max)
         if self:isVulnerable() then
@@ -41,6 +50,9 @@ function BigHelmet:init(x, y, entity)
             defaultOnDamaged(current, max)
         end
     end
+
+    self.flashTimer = 0
+
     local fields = entity.fields
     self.chargeSpeed = fields.xVelocity * 2
     self.chargeCooldown = 0
@@ -165,6 +177,41 @@ function CrashState:update(boss)
     boss.xVelocity = boss.savedXVelocity
 end
 
+function HurtState:enter(boss)
+    if boss.xVelocity ~= 0 then
+        boss.savedXVelocity = boss.xVelocity
+    end
+    boss.xVelocity = 0
+    boss.hurtTimer = HURT_FRAMES
+    boss.canHurtPlayer = false
+    boss:changeState("hurt") -- animation state
+end
+
+function HurtState:update(boss)
+    boss:updateAnimation()
+    boss:applyGravity()
+    boss:moveAndCollide(boss:getPosition())
+
+    boss.hurtTimer -= 1
+    if boss.hurtTimer <= FLICKER_FRAMES then
+        boss:setVisible(math.floor(boss.hurtTimer / FLICKER_INTERVAL) % 2 == 0)
+    end
+
+    if boss.hurtTimer <= 0 then
+        boss.fsm:change("patrol")
+        -- resume the way it was walking before the slam (patrol's enter picks its own direction)
+        local dir = (boss.savedXVelocity or 1) < 0 and -1 or 1
+        boss.xVelocity = dir * boss.walkSpeed
+    end
+end
+
+function HurtState:exit(boss)
+    boss:setVisible(true)
+    boss.canHurtPlayer = true
+    boss:changeState("patrol")
+end
+
+-- Second slam while hurt: stays stopped, open to a jump or slam for damage
 function VulnerableState:enter(boss)
     if boss.xVelocity ~= 0 then
         boss.savedXVelocity = boss.xVelocity
@@ -172,7 +219,7 @@ function VulnerableState:enter(boss)
     boss.xVelocity = 0
     boss.vulnerableTimer = VULNERABLE_FRAMES
     boss.canHurtPlayer = false
-    boss:changeState("hurt")
+    boss:changeState("vulnerable") -- animation state
 end
 
 function VulnerableState:update(boss)
@@ -187,7 +234,6 @@ function VulnerableState:update(boss)
 
     if boss.vulnerableTimer <= 0 then
         boss.fsm:change("patrol")
-        -- resume the way it was walking before the slam (patrol's enter picks its own direction)
         local dir = (boss.savedXVelocity or 1) < 0 and -1 or 1
         boss.xVelocity = dir * boss.walkSpeed
     end
@@ -199,16 +245,39 @@ function VulnerableState:exit(boss)
     boss:changeState("patrol")
 end
 
+function BigHelmet:update()
+    BigHelmet.super.update(self)
+    self:updateHitFlash()
+end
+
+-- Briefly flash the sprite inverted to show a hit landed
+function BigHelmet:hitFlash()
+    self.flashTimer = HIT_FLASH_FRAMES
+end
+
+function BigHelmet:updateHitFlash()
+    if self.flashTimer <= 0 then return end
+    self.flashTimer -= 1
+    local inverted = self.flashTimer > 0 and math.floor(self.flashTimer / HIT_FLASH_INTERVAL) % 2 == 0
+    self:setImageDrawMode(inverted and gfx.kDrawModeInverted or gfx.kDrawModeCopy)
+end
+
+function BigHelmet:isHurt()
+    return self.fsm.currentName == "hurt"
+end
+
 function BigHelmet:isVulnerable()
     return self.fsm.currentName == "vulnerable"
 end
 
--- Only a hit while vulnerable costs a hit point; the boss stays vulnerable until the timer runs out
+-- Costs a hit point; the boss stays vulnerable until its timer runs out (or it dies)
 function BigHelmet:hitWhileVulnerable()
-    self.health:damage(1)
+    if self.health:damage(1) then
+        self:hitFlash()
+    end
 end
 
--- A normal stomp only hurts while vulnerable; otherwise it's a plain bounce
+-- A normal jump only hurts while vulnerable; otherwise it's a plain bounce
 function BigHelmet:onStomped()
     if self:isVulnerable() then
         self:hitWhileVulnerable()
@@ -216,11 +285,16 @@ function BigHelmet:onStomped()
     return true
 end
 
+-- Slam: patrol/charge/crash -> hurt, hurt -> vulnerable, vulnerable -> damage
 function BigHelmet:onSlammed()
-    if self:isVulnerable() then
+    local state = self.fsm.currentName
+    if state == "vulnerable" then
         self:hitWhileVulnerable()
-    elseif self.fsm.currentName == "patrol" or self.fsm.currentName == "charge" or self.fsm.currentName == "crash" then
+    elseif state == "hurt" then
         self.fsm:change("vulnerable")
+        HitStop.start(SLAM_HITSTOP_FRAMES)
+    elseif state == "patrol" or state == "charge" or state == "crash" then
+        self.fsm:change("hurt")
         HitStop.start(SLAM_HITSTOP_FRAMES)
     end
     return {
