@@ -80,6 +80,15 @@ function PlayerCollision:moveAndCollide()
             -- and since we never count as grounded, onLanding's slam shake doesn't fire
             player.slam.slamPhase = nil
             player.slam.powered = false
+            -- a flutter is interrupted too: updateFlutterState runs after this and would
+            -- otherwise overwrite the bounce velocity. Reset it like a fresh jump so a new
+            -- flutter can start at the bounce's apex.
+            player.flutter:resetForJump()
+            player.apexGlide:resetApexGlide()
+            if player.currentState == "flutter" then
+                -- go to "fall", not "jump", so the jump-cut (Up not held) doesn't eat the bounce
+                player:changeState("fall")
+            end
             self:bouncePlayer(other:onBounced())
         elseif other:getTag() == TAGS.Hazzard then
             died = true
