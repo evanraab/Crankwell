@@ -4,37 +4,6 @@ local DEFAULT_BOUNCE_VELOCITY <const> = -6 -- same as an enemy stomp; a full jum
 local DEFAULT_RESPAWN_TIME <const> = 60    -- frames gone before it comes back (~2s at 30fps)
 local POP_FRAMES <const> = 4               -- frames the flattened "used" sprite shows before vanishing
 
--- Placeholder art: solid white with black up-chevrons, so it reads differently from plain platforms.
-local function makeBounceImage(w, h)
-    local img = gfx.image.new(w, h, gfx.kColorWhite)
-    gfx.pushContext(img)
-    gfx.setColor(gfx.kColorBlack)
-    gfx.setLineWidth(2)
-    local size = math.min(h // 2 - 2, 5)
-    local mid = h // 2
-    for cx = 10, w - 6, 14 do
-        gfx.drawLine(cx - size, mid + size // 2, cx, mid - size // 2)
-        gfx.drawLine(cx, mid - size // 2, cx + size, mid + size // 2)
-    end
-    gfx.setLineWidth(1)
-    gfx.drawRect(0, 0, w, h)
-    gfx.popContext()
-    return img
-end
-
--- Squashed version shown for a moment after a bounce: same footprint, bottom half only.
-local function makePoppedImage(w, h)
-    local img = gfx.image.new(w, h, gfx.kColorClear)
-    gfx.pushContext(img)
-    gfx.setColor(gfx.kColorWhite)
-    gfx.fillRect(0, h // 2, w, h - h // 2)
-    gfx.setColor(gfx.kColorBlack)
-    gfx.setDitherPattern(0.5, gfx.image.kDitherTypeBayer2x2)
-    gfx.fillRect(2, h // 2 + 2, w - 4, h - h // 2 - 4)
-    gfx.popContext()
-    return img
-end
-
 --- A platform that launches the player upward when they land on it, then vanishes. It comes
 --- back after `respawnTime` frames (waiting if someone is standing in its space). Restores
 --- instantly when the player respawns. The bounce itself is applied by PlayerCollision,
@@ -47,6 +16,24 @@ end
 --- @overload fun(...): BouncePlatform
 BouncePlatform = {}
 class('BouncePlatform').extends(TimedPlatform)
+
+BouncePlatform.imagePath = "images/platforms/bouncePlatform/bounce-platform"
+
+-- Squashed version shown for a moment after a bounce: the ready image at half height, sitting
+-- on the bottom edge. Cached per ready image.
+local poppedCache = setmetatable({}, { __mode = "k" })
+local function getPoppedImage(ready)
+    local popped = poppedCache[ready]
+    if not popped then
+        local w, h = ready:getSize()
+        popped = gfx.image.new(w, h, gfx.kColorClear)
+        gfx.pushContext(popped)
+        ready:drawScaled(0, h - h // 2, 1, (h // 2) / h)
+        gfx.popContext()
+        poppedCache[ready] = popped
+    end
+    return popped
+end
 
 function BouncePlatform:init(x, y, entity)
     local fields = entity.fields or {}
@@ -65,9 +52,9 @@ end
 -- Overrides TimedPlatform's cycle: back to solid and ready to bounce.
 function BouncePlatform:restartCycle()
     if not self.readyImage then
-        local w, h = self:getSize()
-        self.readyImage = makeBounceImage(w, h)
-        self.poppedImage = makePoppedImage(w, h)
+        -- MovingPlatform's init already set the image from BouncePlatform.imagePath
+        self.readyImage = self:getImage()
+        self.poppedImage = getPoppedImage(self.readyImage)
     end
     self.timer = 0
     self:setImage(self.readyImage)

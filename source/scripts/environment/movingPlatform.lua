@@ -4,17 +4,14 @@ local TILE_SIZE <const> = 20
 local DEFAULT_SPEED <const> = 1         -- px per frame
 local DEFAULT_PAUSE_FRAMES <const> = 30 -- wait at each end of the path
 
--- Placeholder art, drawn to whatever size the platform was given in LDtk:
--- a white frame with a dithered fill so it reads against the black background.
-local function makePlatformImage(w, h)
-    local img = gfx.image.new(w, h, gfx.kColorClear)
-    gfx.pushContext(img)
-    gfx.setColor(gfx.kColorWhite)
-    gfx.fillRect(0, 0, w, h)
-    gfx.setColor(gfx.kColorBlack)
-    gfx.setDitherPattern(0.5, gfx.image.kDitherTypeBayer2x2)
-    gfx.fillRect(2, 2, w - 4, h - 4)
-    gfx.popContext()
+-- Loaded images, keyed by path, shared by every platform that uses them.
+local imageCache = {}
+local function getPlatformImage(path)
+    local img = imageCache[path]
+    if not img then
+        img = assert(gfx.image.new(path), "Missing platform image: " .. path)
+        imageCache[path] = img
+    end
     return img
 end
 
@@ -34,12 +31,14 @@ end
 MovingPlatform = {}
 class('MovingPlatform').extends(gfx.sprite)
 
+-- The platform's art; its size is the platform's size. Subclasses override this with their own.
+MovingPlatform.imagePath = "images/platforms/defaultPlatform/default-platform"
+
 function MovingPlatform:init(x, y, entity)
     MovingPlatform.super.init(self)
 
-    local w = entity.size and entity.size.width or 3 * TILE_SIZE
-    local h = entity.size and entity.size.height or TILE_SIZE
-    self:setImage(makePlatformImage(w, h))
+    self:setImage(getPlatformImage(self.imagePath))
+    local w, h = self:getSize()
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:setCollideRect(0, 0, w, h)
