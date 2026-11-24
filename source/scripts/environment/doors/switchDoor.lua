@@ -16,11 +16,11 @@ function SwitchDoor:init(x, y, entity)
     SwitchDoor.super.init(self, x, y, entity, image)
 end
 
---- called by a switch after player hits it
-function SwitchDoor.openAll(switchId)
-    for _, s in ipairs(gfx.sprite.getAllSprites()) do
-        if s:isa(SwitchDoor) and s.switchId == switchId then
-            s:open()
-        end
-    end
+function SwitchDoor:onSwitchActivated()
+    self:open()
 end
+
+function SwitchDoor:listensTo(switchId)
+    return self.switchId == switchId
+end
+

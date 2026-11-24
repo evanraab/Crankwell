@@ -34,6 +34,22 @@ function FireTrap:init(x, y, entity, sheetPath)
     self:setCollideRect(table.unpack(self.COLLIDE_RECT))
 
     local fields = (entity and entity.fields) or {}
+    self.fields = fields
+    -- array of Enum.Switches values; wrap a single value in case the field isn't an array yet
+    local ids = fields.switchId
+    if ids == nil then
+        ids = {}
+    elseif type(ids) ~= "table" then
+        ids = { ids }
+    end
+    self.switchIds = ids
+
+    if fields.switchState ~= nil then
+        self:setEnabled(fields.switchState)
+        return
+    end
+
+
     local startOn = fields.startOn ~= false
     self:setEnabled(startOn)
 
@@ -44,11 +60,12 @@ function FireTrap:init(x, y, entity, sheetPath)
         local firstPhaseMs = (startOn and self.onMs or self.offMs) + (fields.startOffset or 0) * 1000
         self:scheduleToggle(firstPhaseMs)
     end
+
 end
 
 
 function FireTrap:setupAnimations()
-    self:addState("idle", 1, 1)
+    self:addState("idle", 1, 2, {tickStep = 4})
 end
 
 
@@ -76,3 +93,21 @@ function FireTrap:remove()
     end
     FireTrap.super.remove(self)
 end
+
+function FireTrap:listensTo(switchId)
+    for _, id in ipairs(self.switchIds) do
+        if id == switchId then return true end
+    end
+    return false
+end
+
+function FireTrap:onSwitchActivated()
+    if self.toggleTimer then
+        self.toggleTimer:remove()
+        self.toggleTimer = nil
+    end
+    self:setEnabled(not self.enabled)
+    self.fields.switchState = self.enabled
+end
+
+

@@ -25,7 +25,12 @@ end
 
 function Switch:onJumpedOn(player)
     self.fields.activated = true
-    SwitchDoor.openAll(self.switchId)
-    self:remove() -- switch this with an animation moving it down later
+    if self.switchId ~= nil then
+        for _, s in ipairs(gfx.sprite.getAllSprites()) do
+            if s ~= self and s.listensTo and s:listensTo(self.switchId) then
+                s:onSwitchActivated()
+            end
+        end
+    end
+    self:remove()
 end
-
