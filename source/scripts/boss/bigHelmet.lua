@@ -42,7 +42,7 @@ function BigHelmet:init(x, y, entity)
         end
     end
     local fields = entity.fields
-    self.chargeSpeed = fields.xVelocity * 1.5
+    self.chargeSpeed = fields.xVelocity * 2
     self.chargeCooldown = 0
 end
 
@@ -232,7 +232,7 @@ end
 
 function BigHelmet:setupAnimations()
     BigHelmet.super.setupAnimations(self)
-    self:addState("charge", 1, 2, {tickStep = 2})
+    self:addState("charge", 1,4, {tickStep = 2})
 end
 
 function BigHelmet:nonDamageOrStunHit()
