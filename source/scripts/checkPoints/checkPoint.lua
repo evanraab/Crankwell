@@ -8,8 +8,8 @@ Checkpoint.onActivated = nil
 
 function Checkpoint:init(x, y, entity)
     Checkpoint.super.init(self)
-    local w = (entity.size and entity.size.width) or 16
-    local h = (entity.size and entity.size.height) or 16
+    local w = (entity.size and entity.size.width) or 19
+    local h = (entity.size and entity.size.height) or 23
 
     self.levelRespawnX = x + w / 2
     self.levelRespawnY = y + h / 2   -- adjust to match your player's origin
