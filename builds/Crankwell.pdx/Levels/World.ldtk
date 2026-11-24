@@ -6550,7 +6550,7 @@
 						},
 						{
 							"__identifier": "BouncePlatform",
-							"__grid": [16,6],
+							"__grid": [15,6],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -6559,12 +6559,12 @@
 							"width": 40,
 							"height": 20,
 							"defUid": 186,
-							"px": [320,120],
+							"px": [300,120],
 							"fieldInstances": [
 								{ "__identifier": "bounceVelocity", "__type": "Float", "__value": 8, "__tile": null, "defUid": 187, "realEditorValues": [] },
 								{ "__identifier": "respawnTime", "__type": "Int", "__value": 40, "__tile": null, "defUid": 188, "realEditorValues": [] }
 							],
-							"__worldX": 3980,
+							"__worldX": 3960,
 							"__worldY": 1620
 						}
 					]

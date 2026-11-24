@@ -76,6 +76,10 @@ function PlayerCollision:moveAndCollide()
             other:onJumpedOn(player)
             self:bouncePlayer()
         elseif other:isa(BouncePlatform) and collision.normal.y == -1 then
+            -- a slam bounces too: end it here so it doesn't keep driving the player down,
+            -- and since we never count as grounded, onLanding's slam shake doesn't fire
+            player.slam.slamPhase = nil
+            player.slam.powered = false
             self:bouncePlayer(other:onBounced())
         elseif other:getTag() == TAGS.Hazzard then
             died = true
