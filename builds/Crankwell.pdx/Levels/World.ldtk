@@ -11,7 +11,7 @@
 	"iid": "f591a1f0-6fc0-11f1-96f2-499613078d18",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 206,
+	"nextUid": 207,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -3222,7 +3222,7 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "Entity_ref",
+					"identifier": "target",
 					"doc": null,
 					"__type": "EntityRef",
 					"uid": 205,
@@ -3235,6 +3235,43 @@
 					"editorDisplayScale": 1,
 					"editorDisplayPos": "Above",
 					"editorLinkStyle": "CurvedArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "unlocked",
+					"doc": null,
+					"__type": "Bool",
+					"uid": 206,
+					"type": "F_Bool",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorDisplayColor": null,
 					"editorAlwaysShow": false,
 					"editorShowInWorld": true,
@@ -4257,15 +4294,18 @@
 							"height": 20,
 							"defUid": 204,
 							"px": [220,200],
-							"fieldInstances": [{ "__identifier": "Entity_ref", "__type": "EntityRef", "__value": {
-								"entityIid": "2a82f6a0-e4f0-11f1-9512-d980b2d5db21",
-								"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
-								"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
-								"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
-							}, "__tile": null, "defUid": 205, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["2a82f6a0-e4f0-11f1-9512-d980b2d5db21"]
-							}] }],
+							"fieldInstances": [
+								{ "__identifier": "target", "__type": "EntityRef", "__value": {
+									"entityIid": "2a82f6a0-e4f0-11f1-9512-d980b2d5db21",
+									"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
+									"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
+									"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
+								}, "__tile": null, "defUid": 205, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["2a82f6a0-e4f0-11f1-9512-d980b2d5db21"]
+								}] },
+								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 206, "realEditorValues": [] }
+							],
 							"__worldX": 3788,
 							"__worldY": 968
 						},
@@ -4281,15 +4321,18 @@
 							"height": 20,
 							"defUid": 204,
 							"px": [480,140],
-							"fieldInstances": [{ "__identifier": "Entity_ref", "__type": "EntityRef", "__value": {
-								"entityIid": "287c7840-e4f0-11f1-9512-15ea38435ad4",
-								"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
-								"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
-								"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
-							}, "__tile": null, "defUid": 205, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["287c7840-e4f0-11f1-9512-15ea38435ad4"]
-							}] }],
+							"fieldInstances": [
+								{ "__identifier": "target", "__type": "EntityRef", "__value": {
+									"entityIid": "287c7840-e4f0-11f1-9512-15ea38435ad4",
+									"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
+									"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
+									"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
+								}, "__tile": null, "defUid": 205, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["287c7840-e4f0-11f1-9512-15ea38435ad4"]
+								}] },
+								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 206, "realEditorValues": [] }
+							],
 							"__worldX": 4048,
 							"__worldY": 908
 						}
