@@ -283,7 +283,7 @@ end
 function Player:tryEnterDoor()
     if self.doorCooldown > 0 then return false end
     for _, s in ipairs(self:overlappingSprites()) do
-        if s:isa(MidRoomDoor) and s:enter(self) then
+        if s:isa(WarpDoor) and s:enter(self) then
             return true
         end
     end

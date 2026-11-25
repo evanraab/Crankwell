@@ -35,7 +35,7 @@ import "scripts/environment/bouncePlatform"
 import "scripts/environment/doors/door"
 import "scripts/environment/doors/keyDoor"
 import "scripts/environment/doors/switchDoor"
-import "scripts/environment/doors/midRoomDoor"
+import "scripts/environment/doors/warpDoor"
 import "scripts/environment/doors/switch"
 
 import "scripts/inventory/inventory"

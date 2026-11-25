@@ -1,18 +1,18 @@
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
--- A door in the middle of a room. Stand in front of it and press Up: it plays its
+-- A door that warps the player to another door. Stand in front of it and press Up: it plays its
 -- opening animation, the screen fades, and the player comes out at the door its
 -- LDtk `target` field points to (usually in another room). Both doors are closed
 -- again once the screen is black.
 --
 -- LDtk fields:
---   target  Entity ref - the door to come out of (point it at another MidRoomDoor)
+--   target  Entity ref - the door to come out of (point it at another WarpDoor)
 
---- @class MidRoomDoor : Door
---- @overload fun(...): MidRoomDoor
-MidRoomDoor = {}
-class("MidRoomDoor").extends(Door)
+--- @class WarpDoor : Door
+--- @overload fun(...): WarpDoor
+WarpDoor = {}
+class("WarpDoor").extends(Door)
 
 -- 3 frames of 20x20: closed -> opening -> open
 local doorFrames <const> = gfx.imagetable.new("images/doors/door-table-20-20")
@@ -22,16 +22,16 @@ local CLOSED_FRAME <const> = 1
 local OPEN_FRAME <const> = #doorFrames
 local FRAME_MS <const> = 80
 
-function MidRoomDoor:init(x, y, entity)
+function WarpDoor:init(x, y, entity)
     self.iid = entity.iid
     self.target = entity.fields.target
-    MidRoomDoor.super.init(self, x, y, entity, doorFrames[CLOSED_FRAME])
+    WarpDoor.super.init(self, x, y, entity, doorFrames[CLOSED_FRAME])
     -- overlap, not solid: the player walks in front of the door
     self:setTag(TAGS.Interactable)
 end
 
-function MidRoomDoor:update()
-    MidRoomDoor.super.update(self)
+function WarpDoor:update()
+    WarpDoor.super.update(self)
 
     local anim = self.openAnim
     if not anim then return end
@@ -48,7 +48,7 @@ function MidRoomDoor:update()
 end
 
 -- Plays the opening animation once; `onOpened` runs when it finishes
-function MidRoomDoor:open(onOpened)
+function WarpDoor:open(onOpened)
     if self.openAnim then return end
     self.onOpened = onOpened
     -- false = play once instead of looping
@@ -56,7 +56,7 @@ function MidRoomDoor:open(onOpened)
 end
 
 -- Snaps the door back to its closed frame, cancelling any opening animation
-function MidRoomDoor:close()
+function WarpDoor:close()
     self.openAnim = nil
     self.onOpened = nil
     self:setImage(doorFrames[CLOSED_FRAME])
@@ -64,7 +64,7 @@ end
 
 -- Called by the player when Up is pressed in front of the door.
 -- Returns true if the player is going through (so Up shouldn't also jump).
-function MidRoomDoor:enter(player)
+function WarpDoor:enter(player)
     if not self.target or self.openAnim then return false end
 
     player:beginDoorEntry()

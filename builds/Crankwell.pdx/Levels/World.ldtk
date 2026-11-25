@@ -3188,7 +3188,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "MidRoomDoor",
+			"identifier": "WarpDoor",
 			"uid": 204,
 			"tags": [],
 			"exportToToc": false,
@@ -4283,7 +4283,7 @@
 							"__worldY": 828
 						},
 						{
-							"__identifier": "MidRoomDoor",
+							"__identifier": "WarpDoor",
 							"__grid": [11,10],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -4310,7 +4310,7 @@
 							"__worldY": 968
 						},
 						{
-							"__identifier": "MidRoomDoor",
+							"__identifier": "WarpDoor",
 							"__grid": [24,7],
 							"__pivot": [0,0],
 							"__tags": [],
