@@ -30,6 +30,7 @@ local ENEMY_ENTITIES <const> = {
     ArmoredEnemy = true,
     Spikeball = true,
     SpikeBall_FixedDistance = true,
+    BigHelmet = true,   -- bosses must be listed so resetBosses can respawn them
 }
 
 -- Path is CASE-SENSITIVE on the device (Windows hides this): must match the folder/file exactly.
@@ -273,6 +274,48 @@ function GameScene:getRespawnPoint()
     end
     local rect = self.levelRect
     return rect.x + 2 * TILE_SIZE, rect.y + 10 * TILE_SIZE
+end
+
+-- Fade out, put the player back at the respawn point, reset any living boss, fade in
+function GameScene:respawnPlayer()
+    self.camera:startRespawnFade(function()
+        self.player:revive()
+        self:resetPlayer()
+        self:resetBosses(self.level_name)
+    end)
+end
+
+-- Respawns every boss in the level that is still alive, so it starts over at
+-- its spawn point with full health. Defeated bosses stay gone.
+function GameScene:resetBosses(level_name)
+    local sprites = self.enemySprites[level_name]
+    if not sprites then return end
+
+    local kept, toReset = {}, {}
+    for _, s in ipairs(sprites) do
+        if s:isa(Boss) and not s.health:isDead() then
+            toReset[s.entityIid] = true
+            s:remove()
+        else
+            kept[#kept + 1] = s
+        end
+    end
+    if next(toReset) == nil then return end
+
+    local rect = ldtk.get_rect(level_name)
+    local isRunning = self.runningLevels[level_name] == true
+    for _, entity in ipairs(ldtk.get_entities(level_name) or {}) do
+        local spawn = entitySpawners[entity.name]
+        if toReset[entity.iid] and spawn then
+            local before = snapshotSprites()
+            spawn(rect.x + entity.position.x, rect.y + entity.position.y, entity)
+            for _, s in ipairs(spritesCreatedSince(before)) do
+                s:setUpdatesEnabled(isRunning)
+                kept[#kept + 1] = s
+            end
+        end
+    end
+    self.enemySprites[level_name] = kept
 end
 
 function GameScene:resetPlayer()

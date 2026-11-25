@@ -103,7 +103,7 @@ function Camera:update()
     local t = self.transition
     if t then
         t.frame += 1
-        if t.mode == "fade" then
+        if t.mode == "fade" or t.mode == "respawn" then
             local f = t.frame
             local fade
             if f <= FADE_FRAMES then
@@ -113,7 +113,18 @@ function Camera:update()
             else
                 fade = 1 - (f - FADE_FRAMES - FADE_HOLD) / FADE_FRAMES
             end
-            if f >= FADE_FRAMES then          -- screen is black: jump to the new room
+            if t.mode == "respawn" then
+                if f == FADE_FRAMES then          -- screen is black: reset the room
+                    t.onBlack()
+                    for _, s in ipairs(gfx.sprite.getAllSprites()) do
+                        s:setUpdatesEnabled(false) -- stay frozen while fading back in
+                    end
+                end
+                if f >= FADE_FRAMES then
+                    self.focusX = scene.player.x
+                    self.x, self.y = followTarget(scene.level_name, scene.levelRect, scene.player.x, scene.player.y)
+                end
+            elseif f >= FADE_FRAMES then          -- screen is black: jump to the new room
                 self.x, self.y = t.toX, t.toY
             end
             self:setFade(math.max(fade, 0))
@@ -215,10 +226,32 @@ function Camera:startTransition(name, nr, mode)
     }
 end
 
+-- Fades to black in place, calls onBlack while the screen is covered, then fades back in
+function Camera:startRespawnFade(onBlack)
+    if self.transition then   -- mid room-transition: just reset, that transition unfreezes things
+        onBlack()
+        return
+    end
+    for _, s in ipairs(gfx.sprite.getAllSprites()) do
+        s:setUpdatesEnabled(false)
+    end
+    self.transition = {
+        mode = "respawn", frame = 0,
+        frames = FADE_FRAMES * 2 + FADE_HOLD,
+        onBlack = onBlack,
+    }
+end
+
 function Camera:finishTransition()
     local scene = self.scene
     local t = self.transition
     self.transition = nil
+
+    if t.mode == "respawn" then
+        scene:setActiveLevel(scene.level_name)  -- unfreezes the room
+        scene.player:setUpdatesEnabled(true)
+        return
+    end
 
     scene:setActiveLevel(t.name)    -- unfreezes the new room, loads/unloads its neighbours
     scene.player:setUpdatesEnabled(true)

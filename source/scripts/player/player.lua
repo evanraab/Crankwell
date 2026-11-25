@@ -261,11 +261,15 @@ function Player:die()
     DeathParticles.burst(self.x, self.y)
     self.gameManager.camera:shake(DEATH_SHAKE_MAGNITUDE, DEATH_SHAKE_FRAMES)
     pd.timer.performAfterDelay(DEATH_RESPAWN_DELAY, function()
-        self:setVisible(true)
-        self:setCollisionsEnabled(true)
-        self.dead = false
-        self.gameManager:resetPlayer()
+        self.gameManager:respawnPlayer()
     end)
+end
+
+-- Called by the scene while the screen is black during the respawn fade
+function Player:revive()
+    self:setVisible(true)
+    self:setCollisionsEnabled(true)
+    self.dead = false
 end
 
 function Player:changeToIdleState()

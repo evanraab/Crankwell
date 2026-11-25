@@ -98,6 +98,8 @@ function Boss:init(x, y, entity, sheetPath)
 
     self:setCollideRect(0, 0, 64, 64)
 
+    self.entityIid = entity.iid  -- lets the scene respawn this boss when the player dies
+
     local fields = entity.fields
     self.baseSpeed = math.abs(self.xVelocity)
     self.walkSpeed = self.baseSpeed
