@@ -104,6 +104,8 @@ function PlayerMovement:handleGroundInput(player)
     self:applyHorizontal(player, dir, 1)
 
     if pd.buttonJustPressed(pd.kButtonUp) then
+        -- Up in front of a door goes through it instead of jumping
+        if player:tryEnterDoor() then return end
         player:changeToJumpState()
         return
     end

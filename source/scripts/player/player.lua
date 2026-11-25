@@ -131,6 +131,12 @@ function Player:update()
         return
     end
 
+    -- going through a door: stand still until the scene moves us
+    if self.inDoor then
+        self:updateAnimation()
+        return
+    end
+
     local wasGrounded = self.grounded
     local prevVy = self.yVelocity
 
@@ -263,6 +269,28 @@ function Player:die()
     pd.timer.performAfterDelay(DEATH_RESPAWN_DELAY, function()
         self.gameManager:respawnPlayer()
     end)
+end
+
+-- Goes through a door the player is standing in front of, if there is one
+function Player:tryEnterDoor()
+    for _, s in ipairs(self:overlappingSprites()) do
+        if s:isa(MidRoomDoor) and s:enter(self) then
+            return true
+        end
+    end
+    return false
+end
+
+-- Freezes the player while a door opens and the screen fades
+function Player:beginDoorEntry()
+    self.inDoor = true
+    self.xVelocity = 0
+    self.yVelocity = 0
+    self:changeToIdleState()
+end
+
+function Player:endDoorEntry()
+    self.inDoor = false
 end
 
 -- Called by the scene while the screen is black during the respawn fade

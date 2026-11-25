@@ -5,6 +5,8 @@ local gfx <const> = playdate.graphics
 local ldtk <const> = LDtk
 
 local TILE_SIZE = 20
+-- player.y to the bottom of its collide rect (32x32 sprite, centred, rect 6,8,19,23), plus 1px clearance
+local PLAYER_FEET_OFFSET <const> = 16
 
 TAGS = {
     Player = 1,
@@ -56,6 +58,7 @@ local entitySpawners <const> = {
     Key = function(x, y, e) Key(x, y, e) end,
     KeyDoor = function(x, y, e) KeyDoor(x, y, e) end,
     SwitchDoor = function(x, y, e) SwitchDoor(x, y, e) end,
+    MidRoomDoor = function(x, y, e) MidRoomDoor(x, y, e) end,
     Switch = function(x, y, e) Switch(x, y, e) end,
     BigHelmet = function(x, y, e) BigHelmet(x, y, e) end,
     Checkpoint = function(x, y, e) Checkpoint(x, y, e) end,
@@ -90,7 +93,7 @@ function GameScene:init()
 
     Checkpoint.onActivated = function(cp) self:setCheckpoint(cp) end
 
-    self.spawnLevel = "Level_1"
+    self.spawnLevel = "Level_0"
     gfx.setBackgroundColor(gfx.kColorBlack)
     gfx.clear()
     local spawnRect = ldtk.get_rect(self.spawnLevel)
@@ -267,6 +270,12 @@ function GameScene:getRespawnPoint()
         return cp.x, cp.y
     end
 
+    -- Then the door the player last came through, if it's in this level
+    local door = self.doorArrival
+    if door and door.level == self.level_name then
+        return door.x, door.y
+    end
+
     -- Fallback: start of the current level
     local start = self.levelStarts[self.level_name]
     if start then
@@ -316,6 +325,47 @@ function GameScene:resetBosses(level_name)
         end
     end
     self.enemySprites[level_name] = kept
+end
+
+-- Fades out, moves the player to the door `target` points at (an LDtk entity
+-- reference: { entityIid, levelIid, ... }), then fades back in
+function GameScene:travelThroughDoor(target)
+    local level_name = ldtk.get_level_name(target.levelIid)
+    assert(level_name, "door target is in an unknown level")
+
+    self.camera:startRespawnFade(function()
+        self:setActiveLevel(level_name, true)
+        self:ensureEnemies(level_name)
+
+        local x, y = self:getDoorArrivalPoint(level_name, target.entityIid)
+        self.doorArrival = { level = level_name, x = x, y = y }
+
+        -- the door you come out of is shown open
+        for _, s in ipairs(self.loadedLevels[level_name] or {}) do
+            if s.iid == target.entityIid and s.showOpened then
+                s:showOpened()
+            end
+        end
+
+        local player = self.player
+        player.xVelocity = 0
+        player.yVelocity = 0
+        player:moveTo(x, y)
+        player:endDoorEntry()
+    end)
+end
+
+-- Where the player stands when coming out of a door: centred on it, feet on its bottom edge
+function GameScene:getDoorArrivalPoint(level_name, entityIid)
+    local rect = ldtk.get_rect(level_name)
+    for _, entity in ipairs(ldtk.get_entities(level_name) or {}) do
+        if entity.iid == entityIid then
+            local x = rect.x + entity.position.x + entity.size.width / 2
+            local bottom = rect.y + entity.position.y + entity.size.height
+            return x, bottom - PLAYER_FEET_OFFSET
+        end
+    end
+    error("door target entity " .. tostring(entityIid) .. " not found in " .. level_name)
 end
 
 function GameScene:resetPlayer()
