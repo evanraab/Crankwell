@@ -6,13 +6,20 @@ local DEFAULT_PAUSE_FRAMES <const> = 30 -- wait at each end of the path
 
 -- Loaded images, keyed by path, shared by every platform that uses them.
 local imageCache = {}
-local function getPlatformImage(path)
+local function loadImage(path)
     local img = imageCache[path]
-    if not img then
-        img = assert(gfx.image.new(path), "Missing platform image: " .. path)
+    if img == nil then
+        img = gfx.image.new(path) or false -- false = known missing, don't retry
         imageCache[path] = img
     end
-    return img
+    return img or nil
+end
+
+-- Picks the art for a platform `tiles` wide: "<base>-<N>-tiles" if that file exists
+-- (e.g. default-platform-3-tiles), otherwise the base image.
+local function getPlatformImage(basePath, tiles)
+    return loadImage(basePath .. "-" .. tiles .. "-tiles")
+        or assert(loadImage(basePath), "Missing platform image: " .. basePath)
 end
 
 local function rectsOverlap(ax, ay, aw, ah, bx, by, bw, bh)
@@ -32,12 +39,15 @@ MovingPlatform = {}
 class('MovingPlatform').extends(gfx.sprite)
 
 -- The platform's art; its size is the platform's size. Subclasses override this with their own.
+-- Size variants live next to it as "<imagePath>-<N>-tiles" and are chosen by the LDtk entity width.
 MovingPlatform.imagePath = "images/platforms/defaultPlatform/default-platform"
 
 function MovingPlatform:init(x, y, entity)
     MovingPlatform.super.init(self)
 
-    self:setImage(getPlatformImage(self.imagePath))
+    -- Width comes from how wide the entity is drawn in LDtk; pick the art made for that size.
+    local tiles = entity.size and math.floor(entity.size.width / TILE_SIZE + 0.5) or 2
+    self:setImage(getPlatformImage(self.imagePath, tiles))
     local w, h = self:getSize()
     self:setCenter(0, 0)
     self:moveTo(x, y)

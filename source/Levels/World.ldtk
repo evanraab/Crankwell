@@ -4281,6 +4281,25 @@
 							"fieldInstances": [],
 							"__worldX": 5088,
 							"__worldY": 828
+						},
+						{
+							"__identifier": "BouncePlatform",
+							"__grid": [17,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#3B5DC9",
+							"iid": "9b9fcda0-e4f0-11f1-aa35-53e0bdf6e594",
+							"width": 60,
+							"height": 20,
+							"defUid": 186,
+							"px": [340,120],
+							"fieldInstances": [
+								{ "__identifier": "bounceVelocity", "__type": "Float", "__value": 8, "__tile": null, "defUid": 187, "realEditorValues": [] },
+								{ "__identifier": "respawnTime", "__type": "Int", "__value": 40, "__tile": null, "defUid": 188, "realEditorValues": [] }
+							],
+							"__worldX": 3908,
+							"__worldY": 888
 						}
 					]
 				}
