@@ -90,6 +90,8 @@ end
 CrumblingPlatform = {}
 class('CrumblingPlatform').extends(TimedPlatform)
 
+CrumblingPlatform.imagePath = "images/platforms/crumblePlatform/crumbling-platform"
+
 function CrumblingPlatform:init(x, y, entity)
     local fields = entity.fields or {}
     self.crumbleTime = math.max(1, fields.crumbleTime or DEFAULT_CRUMBLE_TIME)

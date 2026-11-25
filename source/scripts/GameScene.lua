@@ -70,6 +70,7 @@ local entitySpawners <const> = {
     BouncePlatform = function(x, y, e) BouncePlatform(x, y, e) end,
     ProjectileShooter = function(x, y, e) ProjectileShooter(x, y, e) end,
     FireTrap = function(x, y, e) FireTrap(x, y, e) end,
+    RetractingSpike = function(x, y, e) RetractingSpike(x, y, e) end,
     Chest = function(x, y, e) Chest(x, y, e) end,
 }
 
@@ -376,6 +377,7 @@ function GameScene:resetPlayer()
     self:setActiveLevel(self.level_name, true)  -- make sure neighbours are loaded
     TriggeredPlatform.resetAll()
     TimedPlatform.resetAll() -- also restores Crumbling and Bounce platforms
+    RetractingSpike.resetAll()
     self.player:moveTo(x, y)
 end
 
