@@ -3,14 +3,14 @@ local gfx <const> = playdate.graphics
 local DEFAULT_UP_TIME <const> = 45     -- frames fully extended (~1.5s at 30fps)
 local DEFAULT_DOWN_TIME <const> = 60   -- frames fully retracted, including the warning (~2s)
 local DEFAULT_WARN_TIME <const> = 20   -- frames of rattling at the end of downTime (0 = no warning)
-local FRAME_TICKS <const> = 2          -- game frames per animation frame while rising/lowering
+local FRAME_TICKS <const> = 3          -- game frames per animation frame while rising/lowering
 local WARN_PERIOD <const> = 3          -- game frames per rattle step while warning
 local DEADLY_FRACTION <const> = 0.5    -- hurts once the animation is at least this far up
 
 -- Art: an imagetable whose FIRST frame is fully retracted and LAST frame is fully extended.
 -- The rising animation plays it forwards, lowering plays it backwards, and the warning flicks
 -- between frames 1 and 2 (so make frame 2 a small "peek" of the tips).
-local TABLE_PATH <const> = "images/hazzards/spikes/retractingSpike"
+local TABLE_PATH <const> = "images/hazzards/retractingSpikes/retracting-spikes"
 local FALLBACK_IMAGE_PATH <const> = "images/hazzards/spikes/spike"
 local FALLBACK_FRAMES <const> = 6
 
