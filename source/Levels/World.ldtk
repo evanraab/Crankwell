@@ -4281,60 +4281,6 @@
 							"fieldInstances": [],
 							"__worldX": 5088,
 							"__worldY": 828
-						},
-						{
-							"__identifier": "WarpDoor",
-							"__grid": [11,10],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#2CE8F5",
-							"iid": "287c7840-e4f0-11f1-9512-15ea38435ad4",
-							"width": 20,
-							"height": 20,
-							"defUid": 204,
-							"px": [220,200],
-							"fieldInstances": [
-								{ "__identifier": "target", "__type": "EntityRef", "__value": {
-									"entityIid": "2a82f6a0-e4f0-11f1-9512-d980b2d5db21",
-									"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
-									"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
-									"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
-								}, "__tile": null, "defUid": 205, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["2a82f6a0-e4f0-11f1-9512-d980b2d5db21"]
-								}] },
-								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 206, "realEditorValues": [] }
-							],
-							"__worldX": 3788,
-							"__worldY": 968
-						},
-						{
-							"__identifier": "WarpDoor",
-							"__grid": [24,7],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#2CE8F5",
-							"iid": "2a82f6a0-e4f0-11f1-9512-d980b2d5db21",
-							"width": 20,
-							"height": 20,
-							"defUid": 204,
-							"px": [480,140],
-							"fieldInstances": [
-								{ "__identifier": "target", "__type": "EntityRef", "__value": {
-									"entityIid": "287c7840-e4f0-11f1-9512-15ea38435ad4",
-									"layerIid": "5d1a2352-bde0-11f1-a405-e5bae29f7929",
-									"levelIid": "5d1a2350-bde0-11f1-a405-254fa8219d56",
-									"worldIid": "f591a1f1-6fc0-11f1-96f2-7fd0865dc523"
-								}, "__tile": null, "defUid": 205, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["287c7840-e4f0-11f1-9512-15ea38435ad4"]
-								}] },
-								{ "__identifier": "unlocked", "__type": "Bool", "__value": false, "__tile": null, "defUid": 206, "realEditorValues": [] }
-							],
-							"__worldX": 4048,
-							"__worldY": 908
 						}
 					]
 				}
