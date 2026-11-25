@@ -27,6 +27,8 @@ local instances = setmetatable({}, { __mode = "k" })
 TimedPlatform = {}
 class('TimedPlatform').extends(MovingPlatform)
 
+TimedPlatform.movingImagePath = false -- keeps its own art even with an endPoint
+
 function TimedPlatform:init(x, y, entity)
     TimedPlatform.super.init(self, x, y, entity)
 

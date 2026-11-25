@@ -18,6 +18,8 @@ local instances = setmetatable({}, { __mode = "k" })
 TriggeredPlatform = {}
 class('TriggeredPlatform').extends(MovingPlatform)
 
+TriggeredPlatform.movingImagePath = false -- keeps its own art even with an endPoint
+
 function TriggeredPlatform:init(x, y, entity)
     TriggeredPlatform.super.init(self, x, y, entity)
 

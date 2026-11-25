@@ -41,13 +41,19 @@ class('MovingPlatform').extends(gfx.sprite)
 -- The platform's art; its size is the platform's size. Subclasses override this with their own.
 -- Size variants live next to it as "<imagePath>-<N>-tiles" and are chosen by the LDtk entity width.
 MovingPlatform.imagePath = "images/platforms/defaultPlatform/default-platform"
+-- Used instead of imagePath when the platform has an endPoint, so moving platforms look different
+-- from static ones. Subclasses that set this to false always use imagePath.
+MovingPlatform.movingImagePath = "images/platforms/movingPlatform/moving-platform"
 
 function MovingPlatform:init(x, y, entity)
     MovingPlatform.super.init(self)
 
+    local fields = entity.fields or {}
+
     -- Width comes from how wide the entity is drawn in LDtk; pick the art made for that size.
     local tiles = entity.size and math.floor(entity.size.width / TILE_SIZE + 0.5) or 2
-    self:setImage(getPlatformImage(self.imagePath, tiles))
+    local imagePath = (fields.endPoint and self.movingImagePath) or self.imagePath
+    self:setImage(getPlatformImage(imagePath, tiles))
     local w, h = self:getSize()
     self:setCenter(0, 0)
     self:moveTo(x, y)
@@ -55,7 +61,6 @@ function MovingPlatform:init(x, y, entity)
     self:setTag(TAGS.Platform)
     self:setZIndex(Z_INDEXES.Platform)
 
-    local fields = entity.fields or {}
     self.speed = fields.speed or DEFAULT_SPEED
     self.pauseFrames = fields.pauseFrames or DEFAULT_PAUSE_FRAMES
 
