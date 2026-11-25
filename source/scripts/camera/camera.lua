@@ -226,10 +226,12 @@ function Camera:startTransition(name, nr, mode)
     }
 end
 
--- Fades to black in place, calls onBlack while the screen is covered, then fades back in
-function Camera:startRespawnFade(onBlack)
+-- Fades to black in place, calls onBlack while the screen is covered, then fades back in.
+-- `onDone` (optional) runs once the fade-in has finished and the room is unfrozen.
+function Camera:startRespawnFade(onBlack, onDone)
     if self.transition then   -- mid room-transition: just reset, that transition unfreezes things
         onBlack()
+        if onDone then onDone() end
         return
     end
     for _, s in ipairs(gfx.sprite.getAllSprites()) do
@@ -239,6 +241,7 @@ function Camera:startRespawnFade(onBlack)
         mode = "respawn", frame = 0,
         frames = FADE_FRAMES * 2 + FADE_HOLD,
         onBlack = onBlack,
+        onDone = onDone,
     }
 end
 
@@ -250,6 +253,7 @@ function Camera:finishTransition()
     if t.mode == "respawn" then
         scene:setActiveLevel(scene.level_name)  -- unfreezes the room
         scene.player:setUpdatesEnabled(true)
+        if t.onDone then t.onDone() end
         return
     end
 

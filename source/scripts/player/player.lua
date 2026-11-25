@@ -27,6 +27,7 @@ local SLAM_SHAKE_FRAMES = 8
 
 -- death properties
 local DEATH_RESPAWN_DELAY = 700 -- ms; long enough for the death particles to play out
+local DOOR_COOLDOWN_FRAMES = 30 -- ~1s at 30fps before the player can use another door
 local DEATH_SHAKE_MAGNITUDE = 3 -- pixels
 local DEATH_SHAKE_FRAMES = 10
 
@@ -110,6 +111,10 @@ function Player:init(x, y, gameManager)
     self.dead = false
     self.airState = "fall"
 
+    -- doors
+    self.inDoor = false
+    self.doorCooldown = 0   -- frames until the player can use a door again
+
     -- coyote time
     self.coyoteTimer = 0
 
@@ -135,6 +140,9 @@ function Player:update()
     if self.inDoor then
         self:updateAnimation()
         return
+    end
+    if self.doorCooldown > 0 then
+        self.doorCooldown -= 1
     end
 
     local wasGrounded = self.grounded
@@ -273,6 +281,7 @@ end
 
 -- Goes through a door the player is standing in front of, if there is one
 function Player:tryEnterDoor()
+    if self.doorCooldown > 0 then return false end
     for _, s in ipairs(self:overlappingSprites()) do
         if s:isa(MidRoomDoor) and s:enter(self) then
             return true
@@ -291,6 +300,7 @@ end
 
 function Player:endDoorEntry()
     self.inDoor = false
+    self.doorCooldown = DOOR_COOLDOWN_FRAMES
 end
 
 -- Called by the scene while the screen is black during the respawn fade

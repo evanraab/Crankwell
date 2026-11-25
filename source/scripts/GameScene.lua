@@ -328,10 +328,12 @@ function GameScene:resetBosses(level_name)
 end
 
 -- Fades out, moves the player to the door `target` points at (an LDtk entity
--- reference: { entityIid, levelIid, ... }), then fades back in
-function GameScene:travelThroughDoor(target)
+-- reference: { entityIid, levelIid, ... }), closes both doors, then fades back in.
+-- The player stays frozen until the fade-in has finished.
+function GameScene:travelThroughDoor(fromDoor, target)
     local level_name = ldtk.get_level_name(target.levelIid)
     assert(level_name, "door target is in an unknown level")
+    local player = self.player
 
     self.camera:startRespawnFade(function()
         self:setActiveLevel(level_name, true)
@@ -340,17 +342,18 @@ function GameScene:travelThroughDoor(target)
         local x, y = self:getDoorArrivalPoint(level_name, target.entityIid)
         self.doorArrival = { level = level_name, x = x, y = y }
 
-        -- the door you come out of is shown open
+        -- both doors are shown closed when the screen fades back in
+        fromDoor:close()
         for _, s in ipairs(self.loadedLevels[level_name] or {}) do
-            if s.iid == target.entityIid and s.showOpened then
-                s:showOpened()
+            if s.iid == target.entityIid and s.close then
+                s:close()
             end
         end
 
-        local player = self.player
         player.xVelocity = 0
         player.yVelocity = 0
         player:moveTo(x, y)
+    end, function()
         player:endDoorEntry()
     end)
 end
