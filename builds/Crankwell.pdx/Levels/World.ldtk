@@ -4504,26 +4504,23 @@
 							"__worldY": 828
 						},
 						{
-							"__identifier": "RetractingSpike",
-							"__grid": [9,10],
+							"__identifier": "FlyingEnemy",
+							"__grid": [18,9],
 							"__pivot": [0,0],
-							"__tags": ["Hazzard"],
+							"__tags": ["Enemy"],
 							"__tile": null,
-							"__smartColor": "#E43B44",
-							"iid": "9f5cfbb0-e4f0-11f1-9897-27fff0d720e5",
+							"__smartColor": "#BE4A2F",
+							"iid": "fc0b89c0-e4f0-11f1-96ff-596f3e293bfa",
 							"width": 20,
 							"height": 20,
-							"defUid": 209,
-							"px": [180,200],
+							"defUid": 131,
+							"px": [360,180],
 							"fieldInstances": [
-								{ "__identifier": "upTime", "__type": "Int", "__value": 45, "__tile": null, "defUid": 210, "realEditorValues": [] },
-								{ "__identifier": "downTime", "__type": "Int", "__value": 60, "__tile": null, "defUid": 211, "realEditorValues": [] },
-								{ "__identifier": "warnTime", "__type": "Int", "__value": 20, "__tile": null, "defUid": 212, "realEditorValues": [] },
-								{ "__identifier": "startOffset", "__type": "Int", "__value": 0, "__tile": null, "defUid": 213, "realEditorValues": [] },
-								{ "__identifier": "startUp", "__type": "Bool", "__value": false, "__tile": null, "defUid": 214, "realEditorValues": [] }
+								{ "__identifier": "oscillationAmplitude", "__type": "Float", "__value": 20, "__tile": null, "defUid": 132, "realEditorValues": [{ "id": "V_Float", "params": [20] }] },
+								{ "__identifier": "oscillationFrequency", "__type": "Float", "__value": 0.05, "__tile": null, "defUid": 133, "realEditorValues": [{ "id": "V_Float", "params": [0.05] }] }
 							],
-							"__worldX": 3748,
-							"__worldY": 968
+							"__worldX": 3928,
+							"__worldY": 948
 						}
 					]
 				}
